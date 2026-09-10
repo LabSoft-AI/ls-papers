@@ -13,13 +13,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Pandoc, crossref, and LaTeX
+      - name: Install LaTeX, fonts, and SVG support
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc pandoc-crossref \
+          sudo apt-get install -y \
             texlive-xetex texlive-latex-recommended \
             texlive-latex-extra texlive-fonts-recommended fonts-dejavu \
             librsvg2-bin
+
+      - name: Install Pandoc and pandoc-crossref (matching versions)
+        run: |
+          # pandoc-crossref v0.3.25a is built against Pandoc 3.11 — pin both.
+          PANDOC_VERSION=3.11
+          CROSSREF_TAG=v0.3.25a
+          curl -fsSL -o /tmp/pandoc.deb \
+            "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb"
+          sudo dpkg -i /tmp/pandoc.deb
+          curl -fsSL -o /tmp/crossref.tar.xz \
+            "https://github.com/lierdakil/pandoc-crossref/releases/download/${CROSSREF_TAG}/pandoc-crossref-Linux-X64.tar.xz"
+          sudo tar -xf /tmp/crossref.tar.xz -C /usr/local/bin pandoc-crossref
+          sudo chmod +x /usr/local/bin/pandoc-crossref
+          pandoc --version | head -1
+          pandoc-crossref --version
 
       - name: List papers
         run: make list
