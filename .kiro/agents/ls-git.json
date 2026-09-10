@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "ls-git",
+  "description": "Git agent for the ls-papers repo - manages commit messages, GitHub Issues and Git workflow per Conventional Commits standard",
+  "prompt": "file://./ls-git/prompt.md",
+  "tools": [
+    "*"
+  ],
+  "allowedTools": [
+    "read",
+    "grep",
+    "glob"
+  ],
+  "resources": [
+    "file://./ls-git/overview.md",
+    "file://./ls-git/git-workflow.md",
+    "file://./ls-git/github-issues.md",
+    "file://./ls-git/pull-requests.md"
+  ],
+  "hooks": {
+    "userPromptSubmit": [
+      {
+        "command": "echo Current branch: $(git branch --show-current)"
+      },
+      {
+        "command": "echo Current Git issue: $(git log main..HEAD --oneline -1 | grep -o '#[0-9]*' || echo 'unknown')"
+      }
+    ]
+  }
+}
