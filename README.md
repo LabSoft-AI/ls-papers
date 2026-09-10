@@ -26,7 +26,15 @@ ls-papers/
 
 ## Prerequisites
 
-Install the toolchain:
+Quickest path — run the setup script (detects your OS and installs everything:
+pandoc, pandoc-crossref, XeLaTeX, librsvg, git-lfs, DejaVu font):
+
+```bash
+./setup.sh
+```
+
+Supports macOS (Homebrew), Debian/Ubuntu (apt), Fedora/RHEL (dnf). For anything
+else, install manually:
 
 **macOS (Homebrew):**
 ```bash
