@@ -1,0 +1,16 @@
+# Pandoc build output
+public/
+**/public/
+
+# LaTeX intermediates
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
+# OS / editor
+.DS_Store
+*.swp
