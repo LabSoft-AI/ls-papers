@@ -1,0 +1,28 @@
+{
+  "name": "ls-agent-builder",
+  "description": "Specialist in creating custom Kiro CLI agents with proper configuration, tools, resources, and subagent coordination strategies",
+  "prompt": "file://./ls-agent-builder/prompt.md",
+  "mcpServers": {},
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {},
+  "allowedTools": [
+    "read"
+  ],
+  "permissions": {
+    "rules": [
+      {
+        "capability": "fs_write",
+        "match": [".kiro/agents/**"],
+        "effect": "allow"
+      }
+    ]
+  },
+  "resources": [
+    "file://README.md",
+    "file://./ls-agent-builder/agent-builder-guide.md",
+    "file://./ls-agent-builder/subagent-strategy-guide.md"
+  ],
+  "hooks": {}
+}
