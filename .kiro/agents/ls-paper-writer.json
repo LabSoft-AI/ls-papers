@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "ls-paper-writer",
+  "description": "Agent specialist za pisanje naučnih radova u ls-papers repou - struktura rada, akademski stil, IEEE citiranje, pandoc-crossref sintaksa i LaTeX matematika",
+  "prompt": "file://./ls-paper-writer/prompt.md",
+  "mcpServers": {},
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {},
+  "allowedTools": [
+    "read",
+    "grep",
+    "glob"
+  ],
+  "permissions": {
+    "rules": [
+      {
+        "capability": "fs_write",
+        "match": ["papers/**", "template/**"],
+        "effect": "allow"
+      }
+    ]
+  },
+  "resources": [
+    "file://README.md",
+    "file://./ls-paper-writer/paper-structure.md",
+    "file://./ls-paper-writer/citations-crossref.md",
+    "file://./ls-paper-writer/academic-style.md",
+    "file://./ls-paper-writer/new-paper-and-build.md"
+  ],
+  "hooks": {}
+}
