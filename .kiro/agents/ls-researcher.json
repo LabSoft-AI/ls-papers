@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "ls-researcher",
+  "description": "Agent za istraživanje i pregled literature u ls-papers repou - pretraga izvora, sumiranje radova, generisanje BibTeX unosa, related work i gap analiza",
+  "prompt": "file://./ls-researcher/prompt.md",
+  "mcpServers": {},
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {},
+  "allowedTools": [
+    "read",
+    "grep",
+    "glob",
+    "web_search",
+    "web_fetch"
+  ],
+  "permissions": {
+    "rules": [
+      {
+        "capability": "fs_write",
+        "match": ["papers/**"],
+        "effect": "allow"
+      }
+    ]
+  },
+  "resources": [
+    "file://README.md",
+    "file://template/references.bib",
+    "file://./ls-researcher/literature-search.md",
+    "file://./ls-researcher/bibtex-generation.md",
+    "file://./ls-researcher/related-work-and-notes.md"
+  ],
+  "hooks": {}
+}
