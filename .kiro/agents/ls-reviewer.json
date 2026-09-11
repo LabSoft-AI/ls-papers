@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "ls-reviewer",
+  "description": "Agent recenzent naučnih radova u ls-papers repou - kritički pregled sadržaja, strukture, citiranja i konzistentnosti draft-a pre predaje mentoru/žurnalu",
+  "prompt": "file://./ls-reviewer/prompt.md",
+  "mcpServers": {},
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {},
+  "allowedTools": [
+    "read",
+    "grep",
+    "glob"
+  ],
+  "permissions": {
+    "rules": [
+      {
+        "capability": "fs_write",
+        "match": ["papers/**/review-notes.md"],
+        "effect": "allow"
+      }
+    ]
+  },
+  "resources": [
+    "file://README.md",
+    "file://./ls-reviewer/review-checklist.md",
+    "file://./ls-reviewer/citation-integrity.md",
+    "file://./ls-reviewer/report-format.md"
+  ],
+  "hooks": {}
+}
