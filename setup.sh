@@ -54,6 +54,28 @@ install_fedora() {
     librsvg2-tools git-lfs
 }
 
+# Install pre-commit and register the git hooks (commit + commit-msg stages).
+install_precommit() {
+  info "Setting up pre-commit hooks..."
+  if ! have pre-commit; then
+    if have pipx; then
+      pipx install pre-commit
+    elif have pip3; then
+      pip3 install --user pre-commit
+    elif have brew; then
+      brew install pre-commit
+    else
+      warn "Could not install pre-commit (no pipx/pip3/brew). Install it manually:"
+      warn "  pipx install pre-commit   # or: pip3 install --user pre-commit"
+      return 0
+    fi
+  fi
+  # Register both the pre-commit and commit-msg stage hooks.
+  pre-commit install
+  pre-commit install --hook-type commit-msg
+  info "pre-commit hooks installed (run 'pre-commit run --all-files' to test)."
+}
+
 main() {
   local os
   os="$(uname -s)"
@@ -78,6 +100,8 @@ main() {
 
   info "Initializing git-lfs..."
   git lfs install
+
+  install_precommit
 
   info "Verifying toolchain:"
   for tool in pandoc pandoc-crossref xelatex git-lfs; do

@@ -1,0 +1,20 @@
+# codespell configuration for ls-papers.
+# Docs: https://github.com/codespell-project/codespell
+#
+# Strategy (issue #7, Option B): codespell catches common English typos and is
+# safe on Serbian text because it only flags a curated list of known misspellings.
+# Serbian words and domain terms that collide with that list are whitelisted in
+# .spellignore. references.bib, code, and build output are skipped entirely.
+[codespell]
+# Skip files where "typos" are expected or not prose:
+#  - references.bib  : bibliographic keys, author names, foreign titles
+#  - *.csl           : citation style (XML)
+#  - build output    : public/, LaTeX intermediates
+#  - lockfiles / lfs : binary or generated
+skip = *.bib,*.csl,*.png,*.jpg,*.jpeg,*.pdf,*.docx,*.odt,*.ods,./papers/*/public,./.git,*.lock
+# Whitelist of words to ignore (Serbian + technical terms). One per line.
+ignore-words = .spellignore
+# Do not touch code blocks / inline code / URLs is handled by check-hidden off
+# and by skipping non-prose files; codespell reads prose by default.
+check-hidden = false
+# Interactive fixing off in CI/hook; report only (exit non-zero on findings).

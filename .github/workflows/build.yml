@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+# Needed so the PR-comment step can post the artifact link.
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,8 +48,49 @@ jobs:
         run: make all
 
       - name: Upload built documents
+        id: upload
         uses: actions/upload-artifact@v4
         with:
           name: papers
           path: papers/*/public/*
           if-no-files-found: warn
+
+      - name: Comment PDF artifact link on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.upload.outputs.artifact-url }}';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              '📄 **Built documents** for this PR are ready.',
+              '',
+              url
+                ? `Download the \`papers\` artifact: ${url}`
+                : `See the run for artifacts: ${runUrl}`,
+              '',
+              '_Artifacts expire per repo retention settings._',
+            ].join('\n');
+            const marker = '<!-- pdf-artifact-comment -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            const finalBody = `${marker}\n${body}`;
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: finalBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: finalBody,
+              });
+            }

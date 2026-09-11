@@ -1,0 +1,52 @@
+# Pre-commit hooks for ls-papers.
+# Install once:  pre-commit install && pre-commit install --hook-type commit-msg
+# Run manually:  pre-commit run --all-files
+#
+# Papers are prose (Serbian + English), not strict Markdown, so lint rules are
+# intentionally light. Spell-check ignores references.bib, code blocks, and LaTeX
+# math (see the codespell config in pyproject-less setup below and .codespellrc).
+
+repos:
+  # Basic hygiene.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        # Keep Markdown hard line breaks (two trailing spaces) intact.
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        # Binary assets belong in git-lfs, not committed directly.
+        args: [--maxkb=512]
+      - id: check-yaml
+        # Pandoc paper metadata uses '---' document markers (multi-doc stream)
+        # and lives in paper.md / metadata.yaml — not config YAML. Skip those.
+        exclude: '(^template/metadata\.yaml$|^papers/.*/metadata\.yaml$)'
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  # Spell-check (English typos). Serbian words are whitelisted/skipped via
+  # .codespellrc so they are not flagged. references.bib and code are skipped.
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        additional_dependencies: [tomli]
+        # Config (skips, ignore-words) lives in .codespellrc.
+
+  # Light Markdown linting — permissive, papers are prose not strict MD.
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.42.0
+    hooks:
+      - id: markdownlint
+        args: [--config, .markdownlint.yaml]
+
+  # Commit message format: #<issue> <type>(<scope>): <description>
+  - repo: local
+    hooks:
+      - id: commit-msg-format
+        name: "commit message format (#<issue> <type>(<scope>): ...)"
+        language: script
+        entry: scripts/check-commit-msg.sh
+        stages: [commit-msg]
