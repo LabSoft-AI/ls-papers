@@ -64,6 +64,36 @@ Binary assets (PNG/JPG/PDF/DOCX/ODT/ODS) are stored via **git-lfs**. Install it
 once: `git lfs install`. SVG figures are kept as text (not LFS) and need
 `librsvg` for PDF conversion.
 
+## Pre-commit hooks
+
+Quality checks run automatically before each commit. `./setup.sh` installs and
+registers them. To do it manually:
+
+```bash
+pip3 install --user pre-commit    # or: pipx install pre-commit / brew install pre-commit
+pre-commit install                # pre-commit stage
+pre-commit install --hook-type commit-msg   # commit message format
+```
+
+What runs:
+
+- **Hygiene** — trailing whitespace, end-of-file newline, merge-conflict markers,
+  large-file guard (binaries belong in git-lfs), YAML syntax, line endings.
+- **Spell-check** — `codespell` catches common English typos. It skips
+  `references.bib`, code, and build output; Serbian words and domain terms are
+  whitelisted in `.spellignore` (add a lowercase word there if a valid word is
+  flagged). Config in `.codespellrc`.
+- **Markdown lint** — light rules only (`.markdownlint.yaml`); papers are prose,
+  not strict Markdown.
+- **Commit message** — enforces `#<issue> <type>(<scope>): <description>`
+  (`scripts/check-commit-msg.sh`).
+
+Run against everything at any time:
+
+```bash
+pre-commit run --all-files
+```
+
 ## Start a new paper
 
 ```bash

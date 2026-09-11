@@ -1,0 +1,31 @@
+# .spellignore — words codespell should NOT flag.
+# One lowercase word per line. Add Serbian words and domain-specific technical
+# terms here when a legitimate word gets flagged as a typo.
+#
+# Serbian words that collide with codespell's English typo list:
+nam
+ne
+te
+som
+fro
+blok
+tekst
+autor
+stil
+metod
+tabele
+dokument
+mane
+# 'theses' is a valid English plural of thesis; codespell over-flags it.
+theses
+# Technical / domain terms:
+pandoc
+crossref
+bibtex
+xelatex
+latex
+markdown
+csl
+odt
+docx
+librsvg

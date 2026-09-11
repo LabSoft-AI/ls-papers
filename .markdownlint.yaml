@@ -1,0 +1,30 @@
+# markdownlint config — intentionally permissive.
+# Papers are prose (Pandoc Markdown with LaTeX math, citations, cross-refs),
+# not strict CommonMark, so rules that fight academic writing are disabled.
+default: true
+
+# Line length: prose wraps naturally, don't enforce.
+MD013: false
+# Allow inline HTML (sometimes needed for figures/spacing).
+MD033: false
+# First line need not be a top-level heading (YAML metadata comes first).
+MD041: false
+# Duplicate headings allowed (e.g. multiple "Napomena" subsections).
+MD024: false
+# Allow bare URLs.
+MD034: false
+# Do not require blank lines around fenced code / lists strictly.
+MD031: false
+MD032: false
+# Emphasis used as heading is fine in notes.
+MD036: false
+# Paper sections are top-level H1 by design (Pandoc numbers them); allow many H1.
+MD025: false
+# Don't require a language on every fenced code block (many are plain output).
+MD040: false
+# Don't require blank lines around tables (Pandoc pipe tables render fine).
+MD058: false
+# Allow '+' and '*' list markers, not only '-'.
+MD004: false
+# Heading blank-line spacing is a nitpick for prose notes.
+MD022: false
