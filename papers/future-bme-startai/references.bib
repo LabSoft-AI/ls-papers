@@ -127,11 +127,23 @@
              Kraus, Sascha and Jones, Paul},
   title   = {The New Normal: The Status Quo of AI Adoption in SMEs},
   journal = {Journal of Small Business Management},
-  year    = {2024},
+  year    = {2024},   % Crossref: online-first 2024-08-13; štampano izdanje 63(3) 2025 — godina zadržana kao online-first (issued 2024)
   volume  = {63},
   number  = {3},
   pages   = {1297--1331},
   doi     = {10.1080/00472778.2024.2379999}
+}
+
+@incollection{zuferi2026toerbv,
+  author    = {Zuferi, Emir Ebu Davud and Kreppein, Yannick and Fischer, Mahsa},
+  title     = {Iterative {TOE-RBV}-Based {AI} Integration Framework for
+               Resource-Constrained Small and Medium-Sized Enterprises in the {EU}},
+  booktitle = {HCI in Business, Government and Organizations},
+  series    = {Lecture Notes in Computer Science},
+  publisher = {Springer Nature Switzerland},
+  year      = {2026},
+  pages     = {308--326},
+  doi       = {10.1007/978-3-032-30044-7_19}
 }
 
 % ---------------------------------------------------------------------
@@ -203,4 +215,67 @@
   pages     = {1--5},
   publisher = {IEEE},
   doi       = {10.1109/ZINC65316.2025.11103568}
+}
+
+% ---------------------------------------------------------------------
+% Klaster G — Tehničke reference (arhitektura)
+% Za sekciju Sistem/Arhitektura: RAG, FAISS, transformer/LLM temelj,
+% i zvanična AWS dokumentacija (Bedrock, Nova) kao @misc.
+% Verifikovano: Crossref (FAISS), arXiv/NeurIPS (RAG, transformer),
+% zvanične AWS docs stranice otvorene i potvrđene (urldate 2026-09-17).
+% ---------------------------------------------------------------------
+
+@inproceedings{lewis2020rag,
+  author    = {Lewis, Patrick and Perez, Ethan and Piktus, Aleksandra and
+               Petroni, Fabio and Karpukhin, Vladimir and Goyal, Naman and
+               Küttler, Heinrich and Lewis, Mike and Yih, Wen-tau and
+               Rocktäschel, Tim and Riedel, Sebastian and Kiela, Douwe},
+  title     = {Retrieval-Augmented Generation for Knowledge-Intensive
+               {NLP} Tasks},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {33},
+  year      = {2020},
+  pages     = {9459--9474},   % NeurIPS 2020 zvanične strane; arXiv:2005.11401
+  doi       = {10.48550/arXiv.2005.11401}
+}
+
+@article{johnson2021faiss,
+  author  = {Johnson, Jeff and Douze, Matthijs and Jégou, Hervé},
+  title   = {Billion-Scale Similarity Search with {GPUs}},
+  journal = {IEEE Transactions on Big Data},
+  year    = {2021},   % online first 2019; štampano izdanje 7(3) 2021 (Crossref)
+  volume  = {7},
+  number  = {3},
+  pages   = {535--547},
+  doi     = {10.1109/TBDATA.2019.2921572}
+}
+
+@inproceedings{vaswani2017attention,
+  author    = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and
+               Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and
+               Kaiser, Łukasz and Polosukhin, Illia},
+  title     = {Attention Is All You Need},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {30},
+  year      = {2017},
+  pages     = {5998--6008},   % NeurIPS 2017 zvanične strane; arXiv:1706.03762
+  doi       = {10.48550/arXiv.1706.03762}
+}
+
+@misc{awsbedrock,
+  author       = {{Amazon Web Services}},
+  title        = {Amazon Bedrock User Guide --- Overview},
+  howpublished = {\url{https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html}},
+  year         = {2026},
+  note         = {Zvanična dokumentacija; pristupljeno 2026-09-17},
+  urldate      = {2026-09-17}
+}
+
+@misc{awsnova,
+  author       = {{Amazon Web Services}},
+  title        = {What is Amazon Nova? --- User Guide for Amazon Nova},
+  howpublished = {\url{https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html}},
+  year         = {2026},
+  note         = {Zvanična dokumentacija; pristupljeno 2026-09-17},
+  urldate      = {2026-09-17}
 }

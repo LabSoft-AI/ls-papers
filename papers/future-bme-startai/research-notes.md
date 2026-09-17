@@ -36,7 +36,10 @@ Posledice za ovaj rad:
 - Dopunski izvori koje je autor predložio (pokrivaju ugao koji 5 klastera ne
   pokriva direktno): Isabella et al. (2025), *Journal of Business Research* —
   chatbot naspram landing page (konverzija); i jedan TOE-RBV rad o adopciji.
-  TODO: ls-researcher da ih verifikuje i doda u `references.bib` pre pisanja.
+  STATUS (ls-researcher, 17.09.2026): TOE-RBV rad NAĐEN i verifikovan
+  ([@zuferi2026toerbv], Crossref) — dodat u Klaster D. Isabella et al. (2025)
+  JBR — NIJE pouzdano identifikovan pretragom; ostavljen TODO (v. dole), NE
+  izmišljam.
 
 ## STATUS VERIFIKACIJE IZVORA (ne verovati tuđem izveštaju)
 
@@ -51,11 +54,17 @@ mu DOI nije lično otvoren ili provučen kroz Crossref API.
 | laranjo2018 | ls-git (Crossref) | OK (25(9):1248–1258) |
 | wang2023 | ls-git (Crossref) | OK (32(4):1002–1018) |
 | rashid2019 | ls-git (Crossref) | OK (vol 18; article-number TODO) |
-| schanke2021 | — | NEPROVERENO — otvoriti DOI pre predaje |
-| nicolescu2022 | — | NEPROVERENO — otvoriti DOI pre predaje |
-| milneives2020 | — | NEPROVERENO — otvoriti DOI pre predaje |
-| schwaeke2024 | — | NEPROVERENO — otvoriti DOI pre predaje |
-| runeson2009 | — | NEPROVERENO — otvoriti DOI pre predaje |
+| schanke2021 | ls-researcher (Crossref) | OK — naslov/autori/venue/32(3):736–751/2021 se poklapaju |
+| nicolescu2022 | ls-researcher (Crossref) | OK — naslov/autori/venue/11(10):1579/2022 se poklapaju |
+| milneives2020 | ls-researcher (Crossref) | OK — naslov/autori/venue/22(10):e20346/2020 se poklapaju |
+| schwaeke2024 | ls-researcher (Crossref) | metapodaci OK (63(3):1297–1331); Crossref: online 2024-08-13, štampano 2025 — godina zadržana 2024 (issued), dodat komentar u .bib |
+| runeson2009 | ls-researcher (Crossref) | OK — naslov/autori/venue/14(2):131–164/2009 se poklapaju |
+| zuferi2026toerbv | ls-researcher (Crossref) | OK — TOE-RBV AI adopcija MSP EU; LNCS book-chapter, 308–326, 2026 |
+| lewis2020rag | ls-researcher (arXiv/NeurIPS) | OK — arXiv:2005.11401, „Accepted at NeurIPS 2020", 12 autora potvrđeno |
+| johnson2021faiss | ls-researcher (Crossref) | OK — IEEE TBD 7(3):535–547; online 2019, štampano 2021 |
+| vaswani2017attention | ls-researcher (arXiv/NeurIPS) | OK — arXiv:1706.03762, NeurIPS 2017, 8 autora potvrđeno |
+| awsbedrock | ls-researcher (zvanične AWS docs) | OK — stranica otvorena 2026-09-17 (@misc, url+urldate) |
+| awsnova | ls-researcher (zvanične AWS docs) | OK — stranica otvorena 2026-09-17 (@misc, url+urldate) |
 
 Ne ignorisati sopstvene TODO-ove ls-researcher-a — oni su deo ovog spiska.
 
@@ -272,6 +281,17 @@ Relevantno za: kontekst MSP u Srbiji, uvođenje bez novih zaposlenih, ušteda.
     poziv na više empirijskih, kontekstualnih studija.
   - *Sinteza:* eksplicitno artikuliše prazninu (nedostatak konkretnih „kako")
     koju naša primenjena studija slučaja adresira.
+- **[@zuferi2026toerbv]** Zuferi, Kreppein, Fischer (2026), *HCI in Business,
+  Government and Organizations* (LNCS), 308–326, „Iterative TOE-RBV-Based AI
+  Integration Framework for Resource-Constrained SMEs in the EU".
+  DOI: 10.1007/978-3-032-30044-7_19.
+
+  - Izvor: integracioni okvir za uvođenje AI u resursno ograničenim MSP-ovima
+    u EU; kombinuje Technology-Organization-Environment (TOE) i Resource-Based
+    View (RBV) kroz iterativni Plan-Do-Check-Act ciklus.
+  - *Sinteza:* TOE-RBV teorijski okvir koji je autor predložio (dopunski izvor);
+    pozicionira Atlas24h adopciju u resursno ograničenom MSP kontekstu
+    (tehnološki/organizacioni/okruženjski faktori + sopstveni resursi/kapaciteti).
 
 ## Klaster E — Metodologija studije slučaja / praktičarsko istraživanje
 
@@ -355,6 +375,61 @@ Luka Vidaković je koautor sva tri; isti tim (FTN Novi Sad: Stojanović, Pavkovi
 Oprez (integritet): self-citation samo gde je STVARNO relevantno (arhitektura,
 RAG, runtime, agenti). Ne trpati sva tri u svaku sekciju, ne preuveličavati vezu.
 
+## Klaster G — Tehničke reference (arhitektura)
+
+Relevantno za: sekcija Sistem/Arhitektura (chatbot na AWS Bedrock AgentCore +
+Strands, RAG/FAISS iz kb-onboarding, data-platform sa Bedrock Nova + Tool Use).
+Cilj: tehničke tvrdnje oslonjene na verifikovane izvore, ne „iz vazduha".
+
+- **[@lewis2020rag]** Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal, Küttler,
+  Lewis, Yih, Rocktäschel, Riedel, Kiela (2020), *NeurIPS 33*, „Retrieval-Augmented
+  Generation for Knowledge-Intensive NLP Tasks". arXiv:2005.11401
+  (DOI 10.48550/arXiv.2005.11401). VERIFIKOVANO: arXiv stranica navodi „Accepted
+  at NeurIPS 2020"; potpuna lista od 12 autora potvrđena sa arXiv-a.
+
+  - Izvor: uvodi RAG — kombinacija parametarske (seq2seq LLM) i neparametarske
+    memorije (gust vektorski indeks, npr. Wikipedia) preko neuralnog retrivera.
+  - *Sinteza:* temeljni izvor za RAG pristup u kb-onboarding (chatbot odgovara
+    iz kontrolisanog KB-a, ne halucinira cene/informacije).
+
+- **[@johnson2021faiss]** Johnson, Douze, Jégou (2021), *IEEE Transactions on
+  Big Data* 7(3):535–547, „Billion-Scale Similarity Search with GPUs".
+  DOI: 10.1109/TBDATA.2019.2921572. VERIFIKOVANO Crossref (online 2019,
+  štampano izdanje 7(3) 2021 — godina 2021 zadržana po štampanom izdanju).
+
+  - Izvor: FAISS — biblioteka za efikasnu pretragu sličnosti (nearest-neighbor)
+    nad milijardama vektora, uz GPU ubrzanje.
+  - *Sinteza:* opravdava izbor FAISS indeksa u kb-onboarding RAG pipeline-u.
+
+- **[@vaswani2017attention]** Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, Polosukhin (2017), *NeurIPS 30*, „Attention Is All You Need".
+  arXiv:1706.03762 (DOI 10.48550/arXiv.1706.03762). VERIFIKOVANO: arXiv +
+  NeurIPS 2017; 8 autora potvrđeno.
+
+  - Izvor: uvodi Transformer arhitekturu (self-attention), temelj savremenih LLM.
+  - *Sinteza:* osnovni LLM/transformer izvor za pozadinu Bedrock/Nova modela.
+    (Odabran kao (c) — transformer temelj; tool-use/function-calling opisan je
+    kroz zvaničnu AWS Nova dokumentaciju [@awsnova], koja eksplicitno navodi
+    „tool use (function calling)".)
+
+- **[@awsbedrock]** Amazon Web Services, „Amazon Bedrock User Guide — Overview".
+  @misc, url + urldate 2026-09-17. Zvanična dokumentacija (nema DOI).
+  VERIFIKOVANO: stranica otvorena 2026-09-17
+  (docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html).
+
+  - *Sinteza:* referenca za platformu na kojoj radi customer-agent (Bedrock
+    AgentCore, upravljani pristup foundation modelima).
+
+- **[@awsnova]** Amazon Web Services, „What is Amazon Nova? — User Guide".
+  @misc, url + urldate 2026-09-17. Zvanična dokumentacija (nema DOI).
+  VERIFIKOVANO: stranica otvorena 2026-09-17
+  (docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html). Potvrđeno:
+  Nova Pro model ID `amazon.nova-pro-v1:0`, podržava RAG i agentske aplikacije;
+  Nova podržava tool use (function calling).
+
+  - *Sinteza:* referenca za model koji koristi customer-agent (default
+    `eu.amazon.nova-pro-v1:0`) i data-platform analiza (Bedrock Nova + Tool Use).
+
 ## TODO / neverifikovano (za dalju proveru)
 
 - `[@luo2019]` — DOI, autori, naslov, journal, godina POTVRĐENI (Crossref).
@@ -364,3 +439,23 @@ RAG, runtime, agenti). Ne trpati sva tri u svaku sekciju, ne preuveličavati vez
 - `[@rashid2019]` — SAGE članak koristi article-number (1609406919862424) umesto
   klasične paginacije; upisano `pages = {1--13}` kao uobičajena dužina — po
   potrebi zameniti zvaničnom paginacijom PDF-a.
+- **[@lewis2020rag] / [@vaswani2017attention]** — DOI koji je upisan je arXiv
+  DataCite DOI (10.48550/arXiv...). Strane NeurIPS zbornika (`9459--9474`,
+  `5998--6008`) su uobičajeno navođene vrednosti — potvrditi tačnu paginaciju iz
+  zvaničnog NeurIPS proceedings PDF-a pre finalne predaje ako se citira po
+  stranama. Naslovi/autori/godine/venue su verifikovani (arXiv + „Accepted at
+  NeurIPS 2020" / NeurIPS 2017).
+- **[@schwaeke2024]** — godina: Crossref navodi online-first 2024-08-13, a
+  štampano izdanje 63(3) je 2025. Zadržano `year = {2024}` (issued date); ako
+  ciljni šablon zahteva godinu štampanog izdanja, promeniti u 2025.
+- **[@zuferi2026toerbv]** — Crossref navodi godinu 2026 (LNCS zbornik) i tip
+  book-chapter, strane 308–326. Verifikovano; ako je potrebno, dodati ISBN
+  (9783032300447) i editore iz zvaničnog LNCS izdanja.
+- **Isabella et al. (2025), *Journal of Business Research* — chatbot naspram
+  landing page (konverzija)** — NEVERIFIKOVANO / NIJE NAĐENO. Pretraga
+  (web_search) NIJE vratila rad koji se pouzdano poklapa sa opisom „Isabella et
+  al. 2025, JBR, chatbot vs landing page konverzija". NE dodajem BibTeX (integritet
+  — ne izmišljam). TODO za autora/ls-researcher: potvrditi tačan navod (pun
+  naslov, DOI ili link) ili proveriti da li je autor mislio na drugi izvor
+  (npr. drugi časopis, drugu godinu, ili prezime slično „Isabella"). Bez toga
+  ne ide u `references.bib`.
