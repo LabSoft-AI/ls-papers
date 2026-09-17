@@ -18,7 +18,7 @@ abstract: |
   conversion, confirmed sale) and the data source (a production API and the data
   platform), and then report production outcomes over three months. The number
   of confirmed sales grew from 196 (May) to 558 (June) and 1,705 (July 2026),
-  with verified revenue rising from 15,200 to 113,722 euros per month.
+  with verified revenue rising from 15,200 to 38,700 and 113,722 euros per month.
   In-conversation conversion increased from 43% to 61%, coinciding with enabling
   purchases within the chat, and because the channel had previously been a purely
   informational bot with no sales, its 1,705 confirmed sales and 113,722 euros in
@@ -163,6 +163,12 @@ To make the results verifiable, we define the measures explicitly:
   expressed as a percentage.
 - **Confirmed sale**: a transaction recorded through the enterprise's production
   sales API.
+- **Resolved without human intervention**: a conversation in which the user
+  obtained an answer or outcome solely through the AI agent, with no escalation
+  or handoff to the human team, as classified by the data platform described in
+  @sec:system.
+- **Close rate**: for a given funnel branch, the share of conversations with
+  direct purchase intent that end in a confirmed sale, expressed as a percentage.
 
 ## Data sources {#sec:data-sources}
 
@@ -204,8 +210,9 @@ and generated no revenue and no sales (0 euros and 0 confirmed sales), against
 sales in that month, 559 users completed the entire purchase within the chat
 (in-chat completion) and 1,146 left contact details and converted through
 follow-up, while 63% of all conversations were resolved without human
-intervention. The close rate on in-chat purchases was 73%, the highest in the
-funnel. Over the same period, the performance of the human call center remained
+intervention. The close rate on in-chat purchases was 73% (559 of 771
+conversations with direct purchase intent), higher than the close rate of the
+follow-up branch (1,146 of 2,005, that is 57%) and the highest in the funnel. Over the same period, the performance of the human call center remained
 stable (a change of -3.8% year over year), with no increase in headcount. This
 indicates that the growth generated through the chatbot represented additional
 capacity rather than a redistribution of existing human output. Other AI channels
