@@ -19,9 +19,10 @@ abstract: |
   platform), and then report production outcomes over three months. The number
   of confirmed sales grew from 196 (May) to 558 (June) and 1,705 (July 2026),
   with verified revenue rising from 15,200 to 113,722 euros per month.
-  In-conversation conversion increased from 43% to 61% after enabling purchases
-  within the chat, and the AI channel's share of total sales reached 46.4%
-  without any increase in headcount and with a stable human team performance. We
+  In-conversation conversion increased from 43% to 61%, coinciding with enabling
+  purchases within the chat, and the chatbot accounted for 1,705 of 3,905 total
+  sales in July 2026 (43.7%), without any increase in headcount and with a stable
+  human team performance. We
   interpret the results against existing experimental findings and explicitly
   state the limitations, chiefly a conflict of interest (the author is the
   system's implementer), the absence of a control group, and reliance on a single
@@ -143,8 +144,6 @@ platform is the measurement instrument behind the figures in this paper: it
 defines what a single conversation is and classifies conversation outcomes.
 @fig:arhitektura shows the system flow.
 
-<!-- TODO: The architecture diagram (figures/arhitektura.svg) has Serbian labels; localize the diagram to English later. -->
-
 ![Architecture of the AI sales chatbot and the data platform: a conversational agent on a managed platform with a RAG knowledge base, in-conversation purchasing through the sales API, and a separate data platform that analyzes conversations and aggregates metrics.](figures/arhitektura.svg){#fig:arhitektura width=90%}
 
 # Method {#sec:method}
@@ -195,14 +194,16 @@ revenue rose from 15,200 to 38,700 and 113,722 euros per month.
 
 : Growth of confirmed sales and revenue through the AI sales chatbot, May to July 2026. {#tbl:rast}
 
-In-conversation conversion rose from 43% to 61% after purchasing within the chat
-itself was enabled, which moved the channel from an informational to a
-transactional role. In July 2026, the AI channel contributed 1,811 of a total of
-3,905 sales, that is, 46.4% of all sales. Over the same period, the performance
-of the human call center remained stable (a change of -3.8% year over year),
-with no increase in headcount. This indicates that the growth of the AI channel
-represented additional capacity rather than a redistribution of existing human
-output.
+In-conversation conversion rose from 43% to 61% (1,705 of 2,776 qualified leads,
+that is 61.4%), coinciding with enabling purchasing within the chat itself, which
+moved the channel from an informational to a transactional role. In July 2026,
+the chatbot accounted for 1,705 of a total of 3,905 sales, that is, 43.7% of all
+sales. Over the same period, the performance of the human call center remained
+stable (a change of -3.8% year over year), with no increase in headcount. This
+indicates that the growth generated through the chatbot represented additional
+capacity rather than a redistribution of existing human output. Other AI channels
+at the enterprise, such as the sales voicebot, fall outside the scope of this
+paper and are the subject of future work (a master's thesis).
 
 # Discussion {#sec:discussion}
 
@@ -215,7 +216,7 @@ purchase rates [@luo2019] and that interaction design shapes outcomes
 a single enterprise over several months rather than from a controlled experiment.
 
 The stable performance of the human team alongside the simultaneous growth of the
-AI channel supports the claim that deploying such a system in an SME can increase
+chatbot supports the claim that deploying such a system in an SME can increase
 total capacity without new hiring, which is relevant to the adoption barriers
 described in the literature [@oldemeyer2024; @schwaeke2024].
 
@@ -239,7 +240,7 @@ SME in Serbia, describing the architecture as an engineering
 artifact, giving explicit measure definitions, and reporting three months of
 production outcomes. The main finding is that enabling purchases in the
 conversation was accompanied by a rise in conversion from 43% to 61% and growth
-in the AI channel's revenue to 113,722 euros per month, with stable human
+in the chatbot's revenue to 113,722 euros per month, with stable human
 performance and no new hiring. The contribution is the first applied, production
 step in a research program that has so far covered architecture and evaluation
 [@stojanovic2025aws; @vidakovic2025docker], now directed at real business
