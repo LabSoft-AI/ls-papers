@@ -319,6 +319,42 @@ produkcije MSP-a u Srbiji**, sa merljivim ishodima. Naš rad popunjava tu
 prazninu — uz eksplicitno priznanje ograničenja (konflikt interesa, bez
 nezavisne verifikacije i kontrolne grupe), metodološki uokviren Klasterom E.
 
+## Klaster F — Sopstveni prethodni radovi autora (self-citation)
+
+VERIFIKOVANO preko Crossref (autori, venue, godina, strane, DOI se poklapaju).
+Luka Vidaković je koautor sva tri; isti tim (FTN Novi Sad: Stojanović, Pavković,
+Četić, Krunić, Vidaković).
+
+- **[@stojanovic2024telfor]** (2024), *TELFOR 2024*, 1–4. „Unit Test Generation
+  Multi-Agent AI System…". DOI: 10.1109/TELFOR63250.2024.10819096.
+  - *Sinteza:* raniji rad tima o VIŠE-AGENTSKIM AI sistemima → kontinuitet ka
+    agentskoj arhitekturi našeg chatbota. Uvod + Arhitektura.
+- **[@stojanovic2025aws]** (2025), *ZINC 2025*, 20–24. „Comparison of AWS
+  Architectures for Scalable and Cost-Efficient RAG".
+  DOI: 10.1109/ZINC65316.2025.11100283.
+  - *Sinteza:* opravdava arhitektonske izbore (RAG na AWS, FAISS/Bedrock) u
+    sekciji Arhitektura — dizajn zasnovan na ranijoj evaluaciji, ne ad hoc.
+- **[@vidakovic2025docker]** (2025), *ZINC 2025*, 1–5. „Comparative Analysis of
+  Docker and Python Runtimes for AWS Lambda in RAG-Based AI Solutions"
+  (Vidaković PRVI autor). DOI: 10.1109/ZINC65316.2025.11103568.
+  - *Sinteza:* opravdava izbore runtime-a (Lambda u kb-onboarding/data-platform).
+    Arhitektura / Metod. Kao prvi autor — najjača self-citation.
+
+### Kako self-citation jača rad (strategija)
+
+1. **Kontinuitet** — rad je deo programa (agenti → RAG → AWS runtime →
+   produkciona primena), nije izolovan. 3 self-citata su umereni, ne preterivanje.
+2. **Tehnička verodostojnost** — arhitektonske/implementacione tvrdnje (RAG,
+   FAISS, Lambda runtime, agentski dizajn) oslonjene na timsku recenziranu
+   evaluaciju, ne „iz vazduha".
+3. **Pozicioniranje doprinosa** — raniji radovi su eksperimentalni/uporedni
+   (lab); OVAJ je prvi PRIMENJENI, PRODUKCIONI korak istog programa (od
+   evaluacije arhitekture ka stvarnim poslovnim ishodima). Iskorak je deo gap
+   analize.
+
+Oprez (integritet): self-citation samo gde je STVARNO relevantno (arhitektura,
+RAG, runtime, agenti). Ne trpati sva tri u svaku sekciju, ne preuveličavati vezu.
+
 ## TODO / neverifikovano (za dalju proveru)
 
 - `[@luo2019]` — DOI, autori, naslov, journal, godina POTVRĐENI (Crossref).
