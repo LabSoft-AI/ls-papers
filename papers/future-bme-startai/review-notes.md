@@ -222,3 +222,112 @@
 Handoffs: content fixes (C1, I1, I2, M3) → author / ls-paper-writer; bib hygiene
 (I3) and metadata (M1) → author; source/verification TODOs already in the bib →
 ls-researcher; the SVG localization (I4) → author. No Git actions taken.
+
+---
+
+## Drugi krug recenzije (2026-09-17)
+
+> Reviewer: ls-reviewer. Nezavisan, pun ponovni pregled TRENUTNE verzije
+> `paper.md` na grani `feature/paper-future-bme`. Rad ponovo pročitan od početka;
+> `references.bib` proveren u oba smera; `research-notes.md` i
+> `architecture-notes.md` korišćeni za verifikaciju činjenica; SVG dijagram
+> otvoren i pregledan. Nisam menjao rad. Svaki nalaz je ukotvljen.
+>
+> Ukratko: **sve tri kategorije iz prvog kruga (C1, I1–I4) su REŠENE.** Sporni
+> brojevi (1,811 / 3,905 / 46.4% / 43.7% / „AI channel") su u potpunosti uklonjeni
+> — rad je sada strogo o chatbotu. Ostaju dva nova, manja nalaza (jedan važan oko
+> sledljivosti novih granularnih brojki, jedan minoran) i ranije MINOR stavke koje
+> nisu blokirajuće. Procena: rad je u stanju blizu spremnom za predaju.
+
+### (a) Status ranijih nalaza
+
+| ID | Prvi krug (kratko) | Status | Dokaz / gde |
+|----|--------------------|--------|-------------|
+| **C1** | 1,705 (chatbot) vs. 1,811 (AI channel); 46.4% scope creep | **REŠEN** | `grep` po `paper.md` za `1,811\|3,905\|46.4\|43.7\|AI channel` → **0 pogodaka**. Apstrakt i §5 sada govore isključivo o chatbotu (1,705 / €113,722). Nema drugog julskog totala. |
+| **I1** | Konverzioni imenilac (2,776 kvalif. leadova) nije naveden | **REŠEN** | §5, rečenica: „conversion rose from 43% to 61% (1,705 of 2,776 qualified leads, that is 61.4%)". 1,705/2,776 = 61.4% ✓ rekonstruktivno. |
+| **I2** | Apstrakt/§5 43→61% zvuči kauzalno | **REŠEN (DELIMIČNO→REŠEN)** | Apstrakt sada: „increased from 43% to 61%, **coinciding with** enabling purchases within the chat" — temporalna, ne uzročna formulacija; §5 „coinciding with"; §6 zadržava „coincides in time … suggests". Hedge sada dosledan kroz apstrakt/rezultate/diskusiju. |
+| **I3** | 4 neiskorišćena bib unosa (wang2023, zhang2026, laranjo2018, milneives2020) | **REŠEN** | Svaki od 4 unosa u `references.bib` sada nosi komentar `% Rezervisano za master #16 — namerno necitiran u ovom radu`. Diff ključeva potvrđuje: iskorišćeno 16, neiskorišćeno tačno ta 4 (namerno). citeproc ih neće štampati. |
+| **I4** | SVG dijagram samo na srpskom | **REŠEN** | `figures/arhitektura.svg` otvoren: svi tekst-čvorovi su na engleskom („User (web chat)", „Session management", „Agentic step", „RAG (FAISS)", „In-conversation purchase", „Notification service", „Conversation export", „Data platform (measurement instrument)", „Conversation analysis (Amazon Nova)", „Metric aggregation + API", „Measurable outcomes"). Nema više srpskih labela. |
+| **M1** | `metadata.yaml` još template (lang: sr) | **OTVOREN (MINOR)** | Nisam ponovo otvarao fajl u ovom krugu jer ne utiče na build (pandoc koristi YAML iz `paper.md`). Ako fajl još postoji netaknut, ostaje kozmetička higijena — proveriti/obrisati pre predaje. |
+| **M2** | Mnoge definisane a nekorišćene sekcijske labele | **OTVOREN — bez akcije (bezopasno)** | I dalje ~11 sekcijskih labela definisano bez back-reference. Legalno; `numbersections` radi. Nije greška. |
+| **M3** | Provenijencija EUR vs. RSD u prihodu | **OTVOREN (MINOR)** | §4.2 i dalje: „Revenue is expressed in euros as verified in the internal case reports." Ne kaže da li je primenjena konverzija ili su izveštaji izvorno u EUR. Jedna klauzula bi zatvorila. Nije blokirajuće. |
+| **M4** | Stil čist; „chatbot" vs „channel" leksički razdvojiti | **REŠEN** | Termin „AI channel" više se ne pojavljuje; rad dosledno koristi „AI sales chatbot". Stil i dalje čist: bez em-dash umetaka, bez emojija, bez klišea. „SME" dosledan. |
+
+### (b) Novi nalazi (drugi krug)
+
+**N1 — VAŽAN — Nove granularne brojke u §5 nisu sledljive do dostupnih beleški.**
+
+- **Gde:** §5 (Results), rečenice: „Of the 1,705 confirmed sales in that month,
+  **559** users completed the entire purchase within the chat (in-chat completion)
+  and **1,146** left contact details and converted through follow-up, while **63%**
+  of all conversations were resolved without human intervention. The close rate on
+  in-chat purchases was **73%**, the highest in the funnel."
+- **Problem:** `research-notes.md` (slučaj 1, Atlas24h Sales Chatbot) beleži samo:
+  €113,722, 1,705 prodaja, 2,776 leadova, 61.4% konverzija, rast maj→jul, i
+  ljudski call centar -3.8%. Novi brojevi 559 / 1,146 (in-chat vs follow-up split),
+  63% (resolution bez čoveka) i 73% (close rate in-chat) **ne postoje** u
+  istraživačkim beleškama kojima raspolažem. Aritmetika je konzistentna
+  (559 + 1,146 = 1,705 ✓), što je dobar znak, ali sami procenti (63%, 73%) i
+  podela ne mogu se proveriti iz `research-notes.md`.
+- **Zašto je važno:** Rad se eksplicitno prodaje na proverljivosti (§1, §4 —
+  „making the results verifiable"). Ove brojke verovatno dolaze iz interne case-
+  study PDF (`StartAI-CaseStudy-Atlas24h-AI-Sales-Chatbot.pdf`, van ovog repo-a),
+  ali kao recenzent ih ne mogu potvrditi. Nije nužno greška — može biti tačno iz
+  PDF-a — ali je nesledljivo iz materijala koji prati rad.
+- **Predlog (autor odlučuje):** Potvrditi 559 / 1,146 / 63% / 73% direktno iz
+  Atlas case-study PDF-a i, po mogućstvu, dopuniti `research-notes.md` tim
+  brojkama (isti tretman kao ostale — označen izvor), da bi Results bio sledljiv
+  do beleški kao i sve ostalo. Ako neka od brojki nije u PDF-u, ukloniti je ili
+  označiti izvor u tekstu.
+
+**N2 — MINOR — „63% resolved without human intervention" je nova metrika bez definicije u §4.1.**
+
+- **Gde:** §5 uvodi „resolved without human intervention" (63%); §4.1 definiše
+  samo *qualified lead*, *conversion*, *confirmed sale* — ne i „resolution".
+- **Problem:** Metrika koja se pojavljuje u rezultatima a nije definisana u sekciji
+  definicija stvara mali jaz u odnosu na inače uzoran „definiši-pa-izmeri" pristup
+  rada. (Isti pojam „resolution/deflection" u beleškama se koristi za voicebot
+  slučajeve rezervisane za master; ovde je za chatbot.)
+- **Predlog:** Ili dodati kratku definiciju „resolved without human intervention"
+  u §4.1, ili u §5 u jednoj klauzuli reći šta se računa kao rešeno bez čoveka.
+  Sitno; ne blokira.
+
+**Pozitivno (bez izmišljanja mana):** Apstrakt↔uvod↔zaključak su koherentni i sada
+potpuno usklađeni oko chatbota (bez konflacije kanala). Konflikt interesa (§4.3) i
+ograničenja (bez kontrolne grupe, jedan slučaj, instrument istog tima — §6.1)
+navedeni su eksplicitno, više puta, i u zaključku — retko poštено za case study.
+Metod je jasan i reproduktivan na nivou studije slučaja. Self-citati (3) su
+umereni i na pravim mestima. Cross-reference (svih 6 korišćenih @sec/@tbl/@fig)
+pogađaju definisane labele — nema visećih referenci. Struktura pokriva sve
+očekivane sekcije; dužina deluje unutar 5–8 strana (jedna figura, jedna tabela,
+~2.5k reči tela) — potvrditi posle PDF build-a.
+
+**Podsetnik (nije nov nalaz):** BibTeX i dalje nosi ranije autorove TODO-ove
+(luo2019 vol/strane; oldemeyer2024/schwaeke2024 godina online-vs-štampano;
+rashid2019 article-number; NeurIPS strane za lewis2020rag/vaswani2017attention).
+To su poznate pred-predajne verifikacione stavke autora, ne nove mane.
+
+### (c) Opšta procena spremnosti za predaju
+
+Rad je **blizu spreman za predaju**. Sve što je prvi krug označio kao blokirajuće
+(C1) ili važno (I1–I4) je rešeno, i to čisto: kritična konflacija obima potpuno je
+uklonjena, imenilac konverzije dodat, kauzalna formulacija ublažena, neiskorišćeni
+unosi označeni, dijagram lokalizovan na engleski. Preostaje:
+
+- **N1 (važan, ali ne blokira nauku):** obezbediti sledljivost novih granularnih
+  brojki (559/1,146/63%/73%) do izvora/beleški — pitanje integriteta/proverljivosti,
+  ne tačnosti.
+- **N2 + M1 + M3 (minorno):** definisati „resolution" u §4.1; srediti/obrisati
+  `metadata.yaml`; jedna klauzula o EUR provenijenciji.
+
+Preporuka: **prihvatiti uz manje revizije** (minor revisions). Nakon što se N1
+razreši (potvrda brojki iz case-study PDF-a) i minorne stavke doteraju, rad je
+spreman za predaju na Future-BME. Nijedna preostala stavka ne dovodi u pitanje
+osnovnu tezu ni integritet rada.
+
+| ID | Prioritet | Jedna linija |
+|----|-----------|--------------|
+| N1 | VAŽAN | Nove brojke 559/1,146/63%/73% nisu sledljive iz `research-notes.md` — potvrditi iz case-study PDF-a |
+| N2 | MINOR | „resolved without human intervention" (63%) nije definisan u §4.1 |
+| M1 | MINOR | `metadata.yaml` (verovatno još template, lang: sr) — proveriti/obrisati |
+| M3 | MINOR | EUR vs. RSD provenijencija prihoda — jedna klauzula |

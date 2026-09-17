@@ -99,6 +99,28 @@ internih dokumenata, ne nezavisna revizija.
 - Konverzija skočila 43%→61% nakon omogućavanja kupovine u chatu.
 - Doprinos AI kanala ukupnoj prodaji (jul 2026): 1,811 od 3,905 (46.4%);
   ljudski call centar ravno na 2,094 (-3.8% g/g).
+  NAPOMENA (obim): 1,811 je ŠIRI AI kanal (uklj. voicebot) — NE koristi se u
+  Future-BME radu; rad je strogo o chatbotu (1,705). Ostaje ovde kao kontekst.
+
+Izvor: kompletan StartAI case study „Atlas24h — AI Sales Chatbot" (startai.tech,
+Case Studies, jul 2026; „Every number verified through the Atlas production API").
+Detaljne verifikovane brojke iz tog case study-ja (koriste se u §5 rada):
+
+- Growth trajectory (Before info bot → maj → jun → jul 2026):
+  - Konverzacije: — / 1,847 / 4,598 / 7,559
+  - Kvalifikovani leadovi: 0 / 458 / 1,301 / 2,776
+  - Potvrđene prodaje (API): 0 / 196 / 558 / 1,705
+  - Prihod: €0 / €15,200 / €38,700 / €113,722
+  - Conversion rate: — / 42.8% / 42.9% / 61.4%
+- Raspodela ishoda (jul 2026):
+  - Direktna kupovina završena u chatu: 771 konverzacija → 559 potvrđeno (73%)
+  - Lead generisan (follow-up konvertovao): 2,005 → 1,146 potvrđeno (57%)
+  - Informacija / provera statusa: 4,783 → rešeno od strane AI (63%)
+  - 559 + 1,146 = 1,705 (poklapa se sa ukupnim potvrđenim prodajama u julu)
+  - 63% svih konverzacija rešeno bez ljudske intervencije
+- „What changed in July": kupovina se završava direktno u razgovoru (bez
+  prosleđivanja timu) → konverzija 43%→61%; close rate 73% na in-chat kupovinama
+  je najviši u levku.
 
 ### 2. Atlas24h — AI Sales Voicebot (outbound, autonoman) — [REZERVISANO ZA MASTER #16]
 
