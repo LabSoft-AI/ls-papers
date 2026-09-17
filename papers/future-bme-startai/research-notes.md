@@ -133,10 +133,17 @@ problem neusklađenih mera iz drugih slučajeva. Jedan analitički okvir, jedan
 domen, dovoljno prostora za pošten tretman ograničenja.
 
 Predlog strukture (5–8 strana): apstrakt; uvod (problem + doprinos); related
-work (klaster A + metodologija E); metod (opis slučaja, definicije metrika,
-izvor podataka, konflikt interesa); rezultati (rast maj–jul, konverzija, prihod,
-udeo AI kanala); diskusija (poređenje sa [@luo2019]/[@schanke2021], ograničenja);
-zaključak.
+work (klaster A + metodologija E); **sistem/arhitektura** (chatbot na Bedrock
+AgentCore + Strands, RAG iz kb-onboarding, data-platform za analizu konverzacija
+— v. `architecture-notes.md`, jedna figura); metod (opis slučaja, definicije
+metrika, izvor podataka, konflikt interesa); rezultati (rast maj–jul, konverzija,
+prihod, udeo AI kanala); diskusija (poređenje sa [@luo2019]/[@schanke2021],
+ograničenja); zaključak.
+
+Napomena: sekcija Arhitektura je ono što rad čini NAUČNIM/tehničkim, ne samo
+poslovnim case study-jem. Opisati sistem kao inženjerski artefakt (kako je
+izgrađen i kako se meri), ali sažeto zbog 5–8 strana — puni detalji za master
+(#16). Detalji i izvori u `architecture-notes.md`.
 
 ## Šta NEDOSTAJE (za ls-researcher / pre pisanja)
 
