@@ -8,6 +8,57 @@
 > produkcioni podaci samog StartAI-ja, bez nezavisne verifikacije i bez kontrolne
 > grupe. Ovo mora biti eksplicitno navedeno u radu (sekcija Ograničenja).
 
+## ODLUKA O OBIMU (scope) — pročitati pre pisanja
+
+**Future-BME rad = JEDAN slučaj, dubinski: Atlas24h AI Sales Chatbot.**
+
+Obrazloženje (autor, 17.09.2026):
+
+- 5–8 strana i 6 dana ne dozvoljavaju pošteno usklađivanje metrika četiri
+  različita slučaja. Konverzija u chatu (61%), deflection poziva (49%) i udeo
+  zahteva za termin (37%) NISU ista mera i ne mogu jedna pored druge bez
+  zajedničkog analitičkog okvira — a graditi i braniti taj okvir za 4 slučaja u
+  ovom prostoru vodi u plitak rad na sve četiri tačke („prevelik obim za dat
+  prostor" u recenziji).
+- Podela rada između radova mora biti svesna odluka: **Future-BME = uzak i
+  dubok (Atlas24h sales chatbot)**; **master rad (#16) = komparacija sva četiri
+  slučaja** sa usklađenim metrikama i prostorom za odbranu okvira.
+
+Posledice za ovaj rad:
+
+- Primarni slučaj: **samo Atlas24h AI Sales Chatbot** (sekcija „1." ispod).
+- Ostala tri slučaja (sales voicebot, CS voicebot, HealthMedic) — NE ulaze u
+  Future-BME rad; rezervisani za master (#16). Ostaju u ovim beleškama samo kao
+  kontekst, jasno označeni.
+- Literatura: glavni oslonac na klaster A (chatbot konverzija: [@luo2019],
+  [@schanke2021], [@nicolescu2022]) + metodologija (klaster E). Klasteri B i C
+  (voicebots, zdravstvo) postaju sekundarni/za master.
+- Dopunski izvori koje je autor predložio (pokrivaju ugao koji 5 klastera ne
+  pokriva direktno): Isabella et al. (2025), *Journal of Business Research* —
+  chatbot naspram landing page (konverzija); i jedan TOE-RBV rad o adopciji.
+  TODO: ls-researcher da ih verifikuje i doda u `references.bib` pre pisanja.
+
+## STATUS VERIFIKACIJE IZVORA (ne verovati tuđem izveštaju)
+
+Pravilo: nijedan izvor se u finalnoj predaji ne tretira kao „verifikovan" dok
+mu DOI nije lično otvoren ili provučen kroz Crossref API.
+
+| Ključ | Nezavisno provereno | Status |
+|-------|---------------------|--------|
+| luo2019 | autor (ručno) + ls-git (Crossref) | naslov/god/DOI OK; vol/pages TODO |
+| zhang2026 | autor (ručno) + ls-git (Crossref) | OK (72(1):73–95) |
+| oldemeyer2024 | autor (ručno) + ls-git (Crossref) | ispravljeno na 75(1); god 2024/2025 TODO |
+| laranjo2018 | ls-git (Crossref) | OK (25(9):1248–1258) |
+| wang2023 | ls-git (Crossref) | OK (32(4):1002–1018) |
+| rashid2019 | ls-git (Crossref) | OK (vol 18; article-number TODO) |
+| schanke2021 | — | NEPROVERENO — otvoriti DOI pre predaje |
+| nicolescu2022 | — | NEPROVERENO — otvoriti DOI pre predaje |
+| milneives2020 | — | NEPROVERENO — otvoriti DOI pre predaje |
+| schwaeke2024 | — | NEPROVERENO — otvoriti DOI pre predaje |
+| runeson2009 | — | NEPROVERENO — otvoriti DOI pre predaje |
+
+Ne ignorisati sopstvene TODO-ove ls-researcher-a — oni su deo ovog spiska.
+
 ## Izvori materijala
 
 - Case studije (PDF, verifikovane produkcione brojke):
@@ -24,9 +75,14 @@ verifikovane kroz „Atlas production API" / „production call logs"; HealthMed
 „production conversation data — 2,032 analizirane konverzije". Ovo su tvrdnje iz
 internih dokumenata, ne nezavisna revizija.
 
-## Četiri slučaja (potencijalni materijal za komparaciju)
+## Slučajevi (produkcioni podaci)
 
-### 1. Atlas24h — AI Sales Chatbot (web chat)
+> Za Future-BME koristi se SAMO slučaj 1 (Atlas24h AI Sales Chatbot).
+> Slučajevi 2–4 su kontekst i rezervisani su za master rad (#16) — NE ulaze u
+> ovaj konferencijski rad.
+
+### 1. Atlas24h — AI Sales Chatbot (web chat) — PRIMARNI SLUČAJ (Future-BME)
+
 - Period: rast maj→jul 2026.
 - Jul 2026: €113,722 verifikovanog prihoda, 1,705 potvrđenih prodaja (API),
   2,776 kvalifikovanih leadova, konverzija 61.4%.
@@ -35,13 +91,15 @@ internih dokumenata, ne nezavisna revizija.
 - Doprinos AI kanala ukupnoj prodaji (jul 2026): 1,811 od 3,905 (46.4%);
   ljudski call centar ravno na 2,094 (-3.8% g/g).
 
-### 2. Atlas24h — AI Sales Voicebot (outbound, autonoman)
+### 2. Atlas24h — AI Sales Voicebot (outbound, autonoman) — [REZERVISANO ZA MASTER #16]
+
 - Period: 25 dana (lansiran 6. jul 2026).
 - 143 završene prodaje, 2,209 poziva, konverzija 6.5%, 0 ljudi u zatvaranju.
 - Prosečan uspešan poziv 2.5 min; dominantan proizvod Internacionalni+ (128/143).
 - 88 poziva/dan vs. 40–60 kod ljudskog agenta; radi noću i vikendom.
 
-### 3. Atlas24h — AI Customer Service Voicebot (inbound)
+### 3. Atlas24h — AI Customer Service Voicebot (inbound) — [REZERVISANO ZA MASTER #16]
+
 - Jul 2026: 4,223 poziva obradio AI, 2,081 rešeno bez čoveka (deflection 49.3%).
 - Kontekst: obim poziva 13,809 (jul 2025) → 21,009 (jul 2026), +52.1%.
 - Ljudski sales output ostao stabilan (2,177→2,094, -3.8%), 0 novih agenata,
@@ -49,7 +107,8 @@ internih dokumenata, ne nezavisna revizija.
 - Kategorije: status članstva 1,847 (65% AI), roadside 1,109 (45%),
   cene 689 (55%), prodajne prilike 578 (sve prosleđene čoveku).
 
-### 4. HealthMedic — AI Healthcare Chatbot (web chat, poliklinika NS)
+### 4. HealthMedic — AI Healthcare Chatbot (web chat, poliklinika NS) — [REZERVISANO ZA MASTER #16]
+
 - Period: mart–avgust 2026 (2,032 analizirane konverzije).
 - 2,068 pacijentskih konverzacija, 751 zahtev za termin (37% svih),
   96.8% konverzacija bez negativnog sentimenta, 24/7.
@@ -57,15 +116,27 @@ internih dokumenata, ne nezavisna revizija.
 - Tipovi upita: termin 751 (37%), cene 644 (32%), usluge 230 (11%),
   medicinske info 171 (8%), lekari 121 (6%).
 
-## Skica ugla za Future-BME (5–8 strana)
+## Skica ugla za Future-BME (5–8 strana) — JEDAN SLUČAJ, DUBINSKI
 
-Moguć okvir: primenjena studija slučaja o uvođenju AI agenata (chat + glas) u
-MSP okruženju u Srbiji, kroz dva domena (roadside assistance / Atlas24h i
-zdravstvo / HealthMedic) i tri modaliteta (sales chatbot, sales voicebot,
-customer-service voicebot, healthcare chatbot).
+Okvir: primenjena studija slučaja o uvođenju **AI sales chatbota** u MSP
+okruženju u Srbiji (Atlas24h, roadside assistance), sa merljivim produkcionim
+ishodima kroz tri meseca (maj–jul 2026).
 
-Teza: AI agenti povećavaju kapacitet (obim, dostupnost 24/7) bez povećanja broja
-zaposlenih, uz merljive produkcione ishode.
+Teza: AI sales chatbot pretvara ranije nemonetizovan informativni kanal u
+merljiv prodajni kanal — od €0 do €113.722 mesečnog prihoda i rasta konverzije
+sa 43% na 61% nakon omogućavanja kupovine u razgovoru — bez povećanja broja
+zaposlenih, uz stabilan učinak ljudskog tima.
+
+Zašto baš ovaj slučaj: ima najčistiju, jednodimenzionalnu metriku (konverzija →
+potvrđena prodaja → prihod, sve kroz Atlas production API), pa se izbegava
+problem neusklađenih mera iz drugih slučajeva. Jedan analitički okvir, jedan
+domen, dovoljno prostora za pošten tretman ograničenja.
+
+Predlog strukture (5–8 strana): apstrakt; uvod (problem + doprinos); related
+work (klaster A + metodologija E); metod (opis slučaja, definicije metrika,
+izvor podataka, konflikt interesa); rezultati (rast maj–jul, konverzija, prihod,
+udeo AI kanala); diskusija (poređenje sa [@luo2019]/[@schanke2021], ograničenja);
+zaključak.
 
 ## Šta NEDOSTAJE (za ls-researcher / pre pisanja)
 
@@ -79,9 +150,9 @@ zaposlenih, uz merljive produkcione ishode.
 ## TODO
 
 - [ ] Popuniti `metadata.yaml` / `paper.md` header (naslov, autor: Luka Vidaković,
-      apstrakt, keywords).
-- [x] ls-researcher: related work + BibTeX u `references.bib`. (v. sekciju
-      „Related work — literatura" ispod)
+  apstrakt, keywords).
+- [X] ls-researcher: related work + BibTeX u `references.bib`. (v. sekciju
+  „Related work — literatura" ispod)
 - [ ] ls-paper-writer: struktura i tekst po sekcijama.
 - [ ] ls-reviewer: pregled pre predaje.
 
@@ -94,6 +165,7 @@ zaposlenih, uz merljive produkcione ishode.
 > potvrđeni pre citiranja. BibTeX ključevi su u `references.bib`.
 >
 > Konvencija oznaka:
+>
 > - **Izvor** = doslovno iz rada (referenca + DOI/link).
 > - *Sinteza* = moja interpretacija / gde ulazi u naš rad (nije citat).
 
@@ -105,23 +177,24 @@ angažman, otkrivanje identiteta bota).
 - **[@luo2019]** Luo, Tong, Fang, Qu (2019), *Marketing Science*, „Frontiers:
   Machines vs. Humans: The Impact of AI Chatbot Disclosure on Customer
   Purchases". DOI: 10.1287/mksc.2019.1192.
+
   - Izvor: terenski eksperiment; neotkriveni chatbotovi jednako efikasni kao
     iskusni agenti i ~4x efikasniji od neiskusnih, ali otkrivanje identiteta
     bota pre razgovora smanjuje stopu kupovine za >79%.
   - *Sinteza:* okvir za diskusiju o tome zašto naši chatbotovi postižu visoku
     konverziju (61.4% Atlas sales chatbot) i za etičko pitanje transparentnosti.
-
 - **[@schanke2021]** Schanke, Burtch, Ray (2021), *Information Systems Research*
   32(3):736–751, „Estimating the Impact of ‘Humanizing’ Customer Service
   Chatbots". DOI: 10.1287/isre.2021.1015.
+
   - Izvor: humanizacija bota (humor, društvenost, personalizacija) povećava
     prihvatanje, ali uz kompromise (npr. veća osetljivost na cenu).
   - *Sinteza:* dizajn-varijable koje utiču na ishode; kontekstualizuje naše
     rezultate angažmana i konverzacije.
-
 - **[@nicolescu2022]** Nicolescu, Tudorache (2022), *Electronics* 11(10):1579,
   „Human-Computer Interaction in Customer Service: The Experience with AI
   Chatbots — A Systematic Literature Review". DOI: 10.3390/electronics11101579.
+
   - Izvor: sistematski pregled iskustva korisnika sa chatbotovima u korisničkoj
     podršci; mapira dimenzije kvaliteta i faktore prihvatanja.
   - *Sinteza:* pregledni „krovni" izvor za uvod u klaster A i za pozicioniranje
@@ -135,15 +208,16 @@ Voicebot (inbound, deflection 49.3%).
 - **[@wang2023]** Wang, Huang, Hong, Liu, Guo, Chen (2023), *Production and
   Operations Management* 32(4):1002–1018, „Voice-based AI in Call Center
   Customer Service: A Natural Field Experiment". DOI: 10.1111/poms.13953.
+
   - Izvor: prirodni terenski eksperiment sa glasovnim AI u kol-centru; za
     jednostavne zahteve AI smanjuje pritužbe, dok kod složenih klijenti „uče"
     iz ranije interakcije s AI-jem.
   - *Sinteza:* najbliži akademski pandan našem inbound voicebot slučaju;
     okvir za tumačenje deflection stope i granice automatizacije po složenosti.
-
 - **[@zhang2026]** Zhang, Narayandas (2026), *Management Science* 72(1):73–95,
   „Engaging Customers with AI in Online Chats: Evidence from a Randomized Field
   Experiment". DOI: 10.1287/mnsc.2022.03920.
+
   - Izvor: randomizovani terenski eksperiment; AI-asistirani agenti brži i
     efikasniji, najveći dobitak kod manje iskusnih agenata (empatija, rešenje).
   - *Sinteza:* podupire tezu o povećanju kapaciteta bez novog zapošljavanja;
@@ -157,14 +231,15 @@ poliklinika NS, 24/7).
 - **[@laranjo2018]** Laranjo et al. (2018), *JAMIA* 25(9):1248–1258,
   „Conversational Agents in Healthcare: A Systematic Review".
   DOI: 10.1093/jamia/ocy072.
+
   - Izvor: sistematski pregled; oblast u ranoj fazi, studije uglavnom
     kvazi-eksperimentalne, retko mere efikasnost/bezbednost.
   - *Sinteza:* utvrđuje da nedostaju primenjene produkcione studije — direktno
     ka praznini koju naš HealthMedic slučaj popunjava.
-
 - **[@milneives2020]** Milne-Ives et al. (2020), *JMIR* 22(10):e20346,
   „The Effectiveness of Artificial Intelligence Conversational Agents in Health
   Care: Systematic Review". DOI: 10.2196/20346.
+
   - Izvor: dokazi pretežno pozitivni/mešoviti; upotrebljivost i zadovoljstvo
     visoki, efikasnost pozitivna u ~3/4 studija, uz istaknuta ograničenja.
   - *Sinteza:* referentna tačka za naše rezultate zadovoljstva (96.8% bez
@@ -177,14 +252,15 @@ Relevantno za: kontekst MSP u Srbiji, uvođenje bez novih zaposlenih, ušteda.
 - **[@oldemeyer2024]** Oldemeyer, Jede, Teuteberg (2024), *Management Review
   Quarterly* 75(2):1185–1227, „Investigation of Artificial Intelligence in
   SMEs: A Systematic Review…". DOI: 10.1007/s11301-024-00405-4.
+
   - Izvor: najčešće barijere adopcije — nedostatak znanja, troškovi, neadekvatna
     infrastruktura (društveni, ekonomski, tehnološki aspekti).
   - *Sinteza:* okvir barijera naspram kojeg pozicioniramo uspešnu produkcionu
     adopciju u konkretnom MSP-u.
-
 - **[@schwaeke2024]** Schwaeke, Peters, Kanbach, Kraus, Jones (2024), *Journal
   of Small Business Management* 63(3):1297–1331, „The New Normal: The Status
   Quo of AI Adoption in SMEs". DOI: 10.1080/00472778.2024.2379999.
+
   - Izvor: literatura fragmentisana; nejasno kako MSP zaista koriste AI —
     poziv na više empirijskih, kontekstualnih studija.
   - *Sinteza:* eksplicitno artikuliše prazninu (nedostatak konkretnih „kako")
@@ -198,14 +274,15 @@ Relevantno za: opravdanje dizajna (studija slučaja), tretman konflikta interesa
 - **[@runeson2009]** Runeson, Höst (2009), *Empirical Software Engineering*
   14(2):131–164, „Guidelines for Conducting and Reporting Case Study Research
   in Software Engineering". DOI: 10.1007/s10664-008-9102-8.
+
   - Izvor: smernice za sprovođenje/izveštavanje studija slučaja u softverskom
     inženjerstvu (dizajn, prikupljanje podataka, validnost, pretnje validnosti).
   - *Sinteza:* metodološki oslonac za sekciju Metod i za eksplicitno navođenje
     pretnji validnosti (uklj. konflikt interesa i izostanak kontrolne grupe).
-
 - **[@rashid2019]** Rashid, Rashid, Warraich, Sabir, Waseem (2019),
   *International Journal of Qualitative Methods* 18, „Case Study Method: A
   Step-by-Step Guide for Business Researchers". DOI: 10.1177/1609406919862424.
+
   - Izvor: sistematski vodič kroz faze studije slučaja u poslovnim istraživanjima.
   - *Sinteza:* dodatna metodološka referenca za poslovni/MSP kontekst; podupire
     strukturu opisa slučajeva.
