@@ -48,21 +48,21 @@ mu DOI nije lično otvoren ili provučen kroz Crossref API.
 
 | Ključ | Nezavisno provereno | Status |
 |-------|---------------------|--------|
-| luo2019 | autor (ručno) + ls-git (Crossref) | naslov/god/DOI OK; vol/pages TODO |
+| luo2019 | autor (ručno) + ls-git (Crossref) + ls-researcher (DBLP/S2) | vol 38 + str 937–947 POTVRĐENO (DBLP); broj sveske (6) i dalje TODO |
 | zhang2026 | autor (ručno) + ls-git (Crossref) | OK (72(1):73–95) |
-| oldemeyer2024 | autor (ručno) + ls-git (Crossref) | ispravljeno na 75(1); god 2024/2025 TODO |
+| oldemeyer2024 | autor (ručno) + ls-git (Crossref) + ls-researcher (Springer) | RAZREŠENO: 75(2):1185–1227, god 2025 (štampano izd. jun 2025, Springer/Crossref) |
 | laranjo2018 | ls-git (Crossref) | OK (25(9):1248–1258) |
 | wang2023 | ls-git (Crossref) | OK (32(4):1002–1018) |
-| rashid2019 | ls-git (Crossref) | OK (vol 18; article-number TODO) |
+| rashid2019 | ls-git (Crossref) + ls-researcher (Crossref/OpenAlex) | RAZREŠENO: vol 18, article-number 1609406919862424 (nema raspona strana) |
 | schanke2021 | ls-researcher (Crossref) | OK — naslov/autori/venue/32(3):736–751/2021 se poklapaju |
 | nicolescu2022 | ls-researcher (Crossref) | OK — naslov/autori/venue/11(10):1579/2022 se poklapaju |
 | milneives2020 | ls-researcher (Crossref) | OK — naslov/autori/venue/22(10):e20346/2020 se poklapaju |
-| schwaeke2024 | ls-researcher (Crossref) | metapodaci OK (63(3):1297–1331); Crossref: online 2024-08-13, štampano 2025 — godina zadržana 2024 (issued), dodat komentar u .bib |
+| schwaeke2024 | ls-researcher (Crossref) | RAZREŠENO: 63(3):1297–1331, god 2025 (štampano izd. 2025-05-04); online-first 2024-08-13 |
 | runeson2009 | ls-researcher (Crossref) | OK — naslov/autori/venue/14(2):131–164/2009 se poklapaju |
 | zuferi2026toerbv | ls-researcher (Crossref) | OK — TOE-RBV AI adopcija MSP EU; LNCS book-chapter, 308–326, 2026 |
-| lewis2020rag | ls-researcher (arXiv/NeurIPS) | OK — arXiv:2005.11401, „Accepted at NeurIPS 2020", 12 autora potvrđeno |
+| lewis2020rag | ls-researcher (arXiv/NeurIPS zvanični BibTeX) | RAZREŠENO: strane 9459–9474 POTVRĐENE (papers.nips.cc NEURIPS2020_6b493230) |
 | johnson2021faiss | ls-researcher (Crossref) | OK — IEEE TBD 7(3):535–547; online 2019, štampano 2021 |
-| vaswani2017attention | ls-researcher (arXiv/NeurIPS) | OK — arXiv:1706.03762, NeurIPS 2017, 8 autora potvrđeno |
+| vaswani2017attention | ls-researcher (arXiv/NeurIPS zvanični BibTeX) | RAZREŠENO: zvanični NeurIPS BibTeX ima pages={} — strane izostavljene (5998–6008 nije zvanično) |
 | awsbedrock | ls-researcher (zvanične AWS docs) | OK — stranica otvorena 2026-09-17 (@misc, url+urldate) |
 | awsnova | ls-researcher (zvanične AWS docs) | OK — stranica otvorena 2026-09-17 (@misc, url+urldate) |
 
@@ -454,22 +454,40 @@ Cilj: tehničke tvrdnje oslonjene na verifikovane izvore, ne „iz vazduha".
 
 ## TODO / neverifikovano (za dalju proveru)
 
-- `[@luo2019]` — DOI, autori, naslov, journal, godina POTVRĐENI (Crossref).
-  Volume/broj/strane NISU u Crossref-u; javno se navode kao *Marketing Science*
-  38(6):937–947. U `references.bib` upisano sa `% TODO` — potvrditi kod izdavača
-  pre finalne predaje.
-- `[@rashid2019]` — SAGE članak koristi article-number (1609406919862424) umesto
-  klasične paginacije; upisano `pages = {1--13}` kao uobičajena dužina — po
-  potrebi zameniti zvaničnom paginacijom PDF-a.
-- **[@lewis2020rag] / [@vaswani2017attention]** — DOI koji je upisan je arXiv
-  DataCite DOI (10.48550/arXiv...). Strane NeurIPS zbornika (`9459--9474`,
-  `5998--6008`) su uobičajeno navođene vrednosti — potvrditi tačnu paginaciju iz
-  zvaničnog NeurIPS proceedings PDF-a pre finalne predaje ako se citira po
-  stranama. Naslovi/autori/godine/venue su verifikovani (arXiv + „Accepted at
-  NeurIPS 2020" / NeurIPS 2017).
-- **[@schwaeke2024]** — godina: Crossref navodi online-first 2024-08-13, a
-  štampano izdanje 63(3) je 2025. Zadržano `year = {2024}` (issued date); ako
-  ciljni šablon zahteva godinu štampanog izdanja, promeniti u 2025.
+> Ažurirano (ls-researcher, 2026-09-17, sesija „finalize-bib-metadata"). Svaka
+> stavka verifikovana preko Crossref/DataCite/OpenAlex/Semantic Scholar/DBLP ili
+> zvanične stranice izdavača/NeurIPS pre izmene. Ništa nije izmišljeno.
+
+- `[@luo2019]` — DELIMIČNO RAZREŠENO. **Volume 38 i strane 937–947 POTVRĐENI**
+  preko DBLP (zapis `journals/mktsci/LuoTFQ19`, dohvaćeno kroz Semantic Scholar
+  Graph API: `volume 38, pages 937-947`). Crossref/OpenAlex/DOI ne navode
+  vol/broj/strane. **Broj sveske (issue 6) OSTAJE TODO** — nijedan dostupan izvor
+  ga strukturno ne navodi (Crossref/OpenAlex/S2 nemaju issue; DBLP i INFORMS
+  nedostupni preko API-ja, oba iza anti-bot zaštite). Zadržano `number = {6}` uz
+  precizan TODO u `.bib`; potvrditi kod izdavača (INFORMS) pre finalne predaje.
+- `[@oldemeyer2024]` — RAZREŠENO. Springer „Cite this article" i Crossref
+  `journal-issue` navode **Vol. 75, sveska 2, str. 1185–1227, izdanje jun 2025**
+  (online-first 01.02.2024). Ispravljeno u `.bib`: `number = {2}` (ranije pogrešno
+  1 uz netačan komentar o „nezavisnoj proveri") i `year = {2025}` (štampano
+  izdanje, kako sam Springer citira). Izvor: link.springer.com/article/
+  10.1007/s11301-024-00405-4 (otvoreno 2026-09-17) + Crossref API.
+- `[@schwaeke2024]` — RAZREŠENO. Crossref: online-first 2024-08-13; **štampano
+  izdanje 63(3):1297–1331 objavljeno 2025-05-04**. Pošto se citira po štampanom
+  izdanju (vol/broj/strane), `year` usklađen na **2025** radi konzistentnosti.
+  Izvor: Crossref API (published-print 2025-05-04).
+- `[@rashid2019]` — RAZREŠENO. IJQM (SAGE) je online-only i koristi **article
+  number 1609406919862424** umesto klasične paginacije; Crossref i OpenAlex
+  potvrđuju vol 18 i article-number, BEZ raspona strana. Ranije upisano
+  `pages = {1--13}` (nezvanično) zamenjeno article-number-om kao lokatorom uz
+  komentar. Izvor: Crossref API + OpenAlex API.
+- `[@lewis2020rag]` — RAZREŠENO. **Strane 9459–9474 POTVRĐENE** iz zvaničnog
+  NeurIPS BibTeX-a (papers.nips.cc, `NEURIPS2020_6b493230`: `pages = {9459--9474}`).
+  arXiv:2005.11401. TODO uklonjen.
+- `[@vaswani2017attention]` — RAZREŠENO. Zvanični NeurIPS 2017 BibTeX
+  (papers.nips.cc, `NIPS2017_3f5ee243`) ima **PRAZNO `pages = {}`** — elektronski
+  zbornik ne dodeljuje strane. Ranije upisano `5998--6008` potiče iz štampanog
+  Curran izdanja i NIJE u zvaničnom NeurIPS zapisu → **strane izostavljene** (ne
+  izmišljamo). Opciona napomena u `.bib` ako se ikad citira po Curran zborniku.
 - **[@zuferi2026toerbv]** — Crossref navodi godinu 2026 (LNCS zbornik) i tip
   book-chapter, strane 308–326. Verifikovano; ako je potrebno, dodati ISBN
   (9783032300447) i editore iz zvaničnog LNCS izdanja.

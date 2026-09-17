@@ -15,9 +15,11 @@
              Intelligence Chatbot Disclosure on Customer Purchases},
   journal = {Marketing Science},
   year    = {2019},
-  volume  = {38},   % TODO: volume/broj/strane nisu u Crossref-u; javno
-  number  = {6},    % navedeno kao 38(6):937--947 — potvrditi kod izdavača
-  pages   = {937--947},
+  volume  = {38},   % vol 38 + strane 937--947 potvrđeno preko DBLP
+  number  = {6},    % (journals/mktsci/LuoTFQ19, via Semantic Scholar API)
+  pages   = {937--947},   % TODO: broj sveske (6) NIJE nezavisno potvrđen —
+                          % Crossref/OpenAlex/S2 ga ne navode; DBLP/INFORMS
+                          % nedostupni preko API-ja. Potvrditi kod izdavača.
   doi     = {10.1287/mksc.2019.1192}
 }
 
@@ -119,9 +121,12 @@
              Review of the State of the Art and the Main Implementation
              Challenges},
   journal = {Management Review Quarterly},
-  year    = {2024},   % online-first 2024; Crossref izdanje navodi 2025 — uskladiti pre predaje
+  year    = {2025},   % štampano izdanje 75(2), izdanje jun 2025 (Springer
+                      % "Cite this article" i Crossref journal-issue); online
+                      % first 01.02.2024. Citira se po štampanom izdanju → 2025.
   volume  = {75},
-  number  = {1},   % ispravljeno: 75(1), ne 75(2) — nezavisno provereno
+  number  = {2},   % Crossref journal-issue = 75(2), jun 2025; Springer str.
+                   % 1185--1227 (potvrđeno na link.springer.com, 2026-09-17)
   pages   = {1185--1227},
   doi     = {10.1007/s11301-024-00405-4}
 }
@@ -131,7 +136,9 @@
              Kraus, Sascha and Jones, Paul},
   title   = {The New Normal: The Status Quo of AI Adoption in SMEs},
   journal = {Journal of Small Business Management},
-  year    = {2024},   % Crossref: online-first 2024-08-13; štampano izdanje 63(3) 2025 — godina zadržana kao online-first (issued 2024)
+  year    = {2025},   % štampano izdanje 63(3), objavljeno 2025-05-04
+                      % (Crossref published-print); online-first 2024-08-13.
+                      % Citira se po štampanom izdanju (vol/broj/strane) → 2025.
   volume  = {63},
   number  = {3},
   pages   = {1297--1331},
@@ -173,7 +180,11 @@
   journal = {International Journal of Qualitative Methods},
   year    = {2019},
   volume  = {18},
-  pages   = {1--13},   % SAGE članak-broj 1609406919862424 (bez klasične paginacije)
+  pages   = {1609406919862424},   % SAGE članak-broj (article number) — IJQM je
+                                  % online-only, koristi article-number umesto
+                                  % klasične paginacije. Crossref/OpenAlex ne
+                                  % navode raspon strana; ranije upisano 1--13
+                                  % nije zvanična paginacija (uklonjeno).
   doi     = {10.1177/1609406919862424}
 }
 
@@ -239,7 +250,9 @@
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   volume    = {33},
   year      = {2020},
-  pages     = {9459--9474},   % NeurIPS 2020 zvanične strane; arXiv:2005.11401
+  pages     = {9459--9474},   % POTVRĐENO: zvanični NeurIPS 2020 BibTeX
+                              % (papers.nips.cc, NEURIPS2020_6b493230) navodi
+                              % pages = {9459--9474}. arXiv:2005.11401.
   doi       = {10.48550/arXiv.2005.11401}
 }
 
@@ -262,7 +275,11 @@
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   volume    = {30},
   year      = {2017},
-  pages     = {5998--6008},   % NeurIPS 2017 zvanične strane; arXiv:1706.03762
+  % pages: zvanični NeurIPS 2017 BibTeX (papers.nips.cc, NIPS2017_3f5ee243)
+  % ima PRAZNO polje pages = {} — elektronski zbornik ne dodeljuje strane.
+  % Ranije upisano 5998--6008 potiče iz štampanog Curran izdanja i NIJE u
+  % zvaničnom NeurIPS zapisu → izostavljeno (ne izmišljamo strane).
+  % TODO (opciono): ako se citira po štampanom Curran zborniku, dodati 5998--6008.
   doi       = {10.48550/arXiv.1706.03762}
 }
 
