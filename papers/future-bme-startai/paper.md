@@ -20,8 +20,9 @@ abstract: |
   of confirmed sales grew from 196 (May) to 558 (June) and 1,705 (July 2026),
   with verified revenue rising from 15,200 to 113,722 euros per month.
   In-conversation conversion increased from 43% to 61%, coinciding with enabling
-  purchases within the chat, and the chatbot accounted for 1,705 of 3,905 total
-  sales in July 2026 (43.7%), without any increase in headcount and with a stable
+  purchases within the chat, and because the channel had previously been a purely
+  informational bot with no sales, its 1,705 confirmed sales and 113,722 euros in
+  July 2026 were incremental, without any increase in headcount and with a stable
   human team performance. We
   interpret the results against existing experimental findings and explicitly
   state the limitations, chiefly a conflict of interest (the author is the
@@ -196,9 +197,15 @@ revenue rose from 15,200 to 38,700 and 113,722 euros per month.
 
 In-conversation conversion rose from 43% to 61% (1,705 of 2,776 qualified leads,
 that is 61.4%), coinciding with enabling purchasing within the chat itself, which
-moved the channel from an informational to a transactional role. In July 2026,
-the chatbot accounted for 1,705 of a total of 3,905 sales, that is, 43.7% of all
-sales. Over the same period, the performance of the human call center remained
+moved the channel from an informational to a transactional role. Before the AI
+sales agent was introduced, the channel operated as a purely informational bot
+and generated no revenue and no sales (0 euros and 0 confirmed sales), against
+1,705 confirmed sales and 113,722 euros in July 2026. Of the 1,705 confirmed
+sales in that month, 559 users completed the entire purchase within the chat
+(in-chat completion) and 1,146 left contact details and converted through
+follow-up, while 63% of all conversations were resolved without human
+intervention. The close rate on in-chat purchases was 73%, the highest in the
+funnel. Over the same period, the performance of the human call center remained
 stable (a change of -3.8% year over year), with no increase in headcount. This
 indicates that the growth generated through the chatbot represented additional
 capacity rather than a redistribution of existing human output. Other AI channels
