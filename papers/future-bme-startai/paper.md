@@ -1,5 +1,5 @@
 ---
-title: "An AI Sales Chatbot as a Measurable Sales Channel: A Production Case Study in a Small Enterprise"
+title: "An AI Sales Chatbot as a Measurable Sales Channel: A Production Case Study in an SME"
 author:
   - name: "Luka Vidaković"
     affiliation: "University of Novi Sad, Faculty of Technical Sciences"
@@ -9,7 +9,7 @@ abstract: |
   in customer support and sales, yet evidence of their effect comes mostly from
   controlled experiments, while applied production studies in small and
   medium-sized enterprises remain scarce. This paper presents an in-depth case
-  study of deploying an AI sales chatbot in a small enterprise in Serbia
+  study of deploying an AI sales chatbot in an SME in Serbia
   (Atlas24h, roadside assistance). The chatbot was built as an engineering
   artifact on a managed agentic platform (AWS Bedrock AgentCore) with the Strands
   Agents SDK, using retrieval-based answering over a controlled knowledge base
@@ -234,8 +234,8 @@ to validity explicitly, in line with the methodological guidelines.
 
 # Conclusion {#sec:conclusion}
 
-This paper presented a production case study of deploying an AI sales chatbot in a
-small enterprise in Serbia, describing the architecture as an engineering
+This paper presented a production case study of deploying an AI sales chatbot in an
+SME in Serbia, describing the architecture as an engineering
 artifact, giving explicit measure definitions, and reporting three months of
 production outcomes. The main finding is that enabling purchases in the
 conversation was accompanied by a rise in conversion from 43% to 61% and growth
