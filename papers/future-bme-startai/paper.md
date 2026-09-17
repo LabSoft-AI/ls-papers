@@ -140,7 +140,7 @@ sa strukturisanim izlazom i agregira metrike. Ta platforma je merni instrument
 iza brojki u ovom radu: ona definiše šta je jedna konverzacija i klasifikuje
 ishode razgovora. Slika \ref{fig:arhitektura} prikazuje tok sistema.
 
-![Arhitektura AI prodajnog chatbota i podatkovne platforme (privremeni prikaz). TODO: zameniti stvarnim dijagramom arhitekture.](figures/primer.png){#fig:arhitektura width=70%}
+![Arhitektura AI prodajnog chatbota i podatkovne platforme: konverzacioni agent na upravljanoj platformi sa RAG bazom znanja, kupovina u razgovoru kroz prodajni API, i zasebna podatkovna platforma koja analizira konverzacije i agregira metrike.](figures/arhitektura.svg){#fig:arhitektura width=90%}
 
 # Metod {#sec:metod}
 
