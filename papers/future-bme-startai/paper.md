@@ -1,245 +1,254 @@
 ---
-title: "AI prodajni chatbot kao merljiv prodajni kanal: produkciona studija slučaja u malom preduzeću"
+title: "An AI Sales Chatbot as a Measurable Sales Channel: A Production Case Study in a Small Enterprise"
 author:
   - name: "Luka Vidaković"
     affiliation: "University of Novi Sad, Faculty of Technical Sciences"
 date: "2026"
 abstract: |
-  Konverzacioni agenti zasnovani na velikim jezičkim modelima sve češće se
-  uvode u korisničku podršku i prodaju, ali dokazi o njihovom efektu pretežno
-  potiču iz kontrolisanih eksperimenata, dok primenjenih produkcionih studija u
-  malim i srednjim preduzećima nedostaje. Ovaj rad predstavlja dubinsku studiju
-  slučaja uvođenja AI prodajnog chatbota u malo preduzeće u Srbiji (Atlas24h,
-  pomoć na putu). Chatbot je izgrađen kao inženjerski artefakt na upravljanoj
-  agentskoj platformi (AWS Bedrock AgentCore) uz Strands Agents SDK, sa
-  odgovaranjem zasnovanim na pretrazi nad kontrolisanom bazom znanja (RAG,
-  FAISS) i zasebnom podatkovnom platformom za automatsku analizu konverzacija.
-  Opisujemo arhitekturu sistema, definišemo mere (kvalifikovan lead, konverzija,
-  potvrđena prodaja) i izvor podataka (produkcioni API i podatkovna platforma),
-  a zatim izveštavamo o produkcionim ishodima tokom tri meseca. Broj potvrđenih
-  prodaja rastao je sa 196 (maj) na 558 (jun) i 1.705 (jul 2026), uz rast
-  verifikovanog prihoda sa 15.200 na 113.722 evra mesečno. Konverzija u
-  razgovoru porasla je sa 43% na 61% nakon omogućavanja kupovine unutar chata,
-  a udeo AI kanala u ukupnoj prodaji dostigao je 46,4% bez povećanja broja
-  zaposlenih i uz stabilan učinak ljudskog tima. Rezultate tumačimo u odnosu na
-  postojeće eksperimentalne nalaze i eksplicitno navodimo ograničenja, pre svega
-  konflikt interesa (autor je implementator sistema), izostanak kontrolne grupe
-  i oslanjanje na jedan slučaj.
-keywords: [AI chatbot, konverzacioni agenti, konverzija u prodaji, RAG, mala i srednja preduzeća, studija slučaja]
-lang: sr
+  Conversational agents based on large language models are increasingly deployed
+  in customer support and sales, yet evidence of their effect comes mostly from
+  controlled experiments, while applied production studies in small and
+  medium-sized enterprises remain scarce. This paper presents an in-depth case
+  study of deploying an AI sales chatbot in a small enterprise in Serbia
+  (Atlas24h, roadside assistance). The chatbot was built as an engineering
+  artifact on a managed agentic platform (AWS Bedrock AgentCore) with the Strands
+  Agents SDK, using retrieval-based answering over a controlled knowledge base
+  (RAG, FAISS) and a separate data platform for automated conversation analysis.
+  We describe the system architecture, define the measures (qualified lead,
+  conversion, confirmed sale) and the data source (a production API and the data
+  platform), and then report production outcomes over three months. The number
+  of confirmed sales grew from 196 (May) to 558 (June) and 1,705 (July 2026),
+  with verified revenue rising from 15,200 to 113,722 euros per month.
+  In-conversation conversion increased from 43% to 61% after enabling purchases
+  within the chat, and the AI channel's share of total sales reached 46.4%
+  without any increase in headcount and with a stable human team performance. We
+  interpret the results against existing experimental findings and explicitly
+  state the limitations, chiefly a conflict of interest (the author is the
+  system's implementer), the absence of a control group, and reliance on a single
+  case.
+keywords: [AI chatbot, conversational agents, sales conversion, RAG, small and medium-sized enterprises, case study]
+lang: en
 mainfont: "DejaVu Serif"
 bibliography: references.bib
 numbersections: true
 ---
 
-# Uvod
+# Introduction {#sec:introduction}
 
-Mala i srednja preduzeća (MSP) sve češće razmatraju konverzacione AI agente kao
-način da opsluže rastući obim upita bez proporcionalnog povećanja broja
-zaposlenih. Uprkos brzom širenju ovih sistema, dokazi o njihovom poslovnom
-efektu i dalje pretežno potiču iz kontrolisanih ili eksperimentalnih uslova
-[@luo2019; @schanke2021], dok pregledi literature o adopciji AI u MSP izveštavaju
-o fragmentisanim nalazima i pozivaju na više primenjenih, kontekstualnih studija
-[@schwaeke2024; @oldemeyer2024]. Posledica je jaz između onoga što je pokazano u
-eksperimentu i onoga što se dešava kada takav sistem radi u produkciji jednog
-konkretnog preduzeća.
+Small and medium-sized enterprises (SMEs) increasingly consider conversational
+AI agents as a way to serve a growing volume of inquiries without a proportional
+increase in headcount. Despite the rapid spread of these systems, evidence of
+their business effect still comes mostly from controlled or experimental settings
+[@luo2019; @schanke2021], while literature reviews on AI adoption in SMEs report
+fragmented findings and call for more applied, contextual studies
+[@schwaeke2024; @oldemeyer2024]. The result is a gap between what has been shown
+in an experiment and what happens when such a system runs in the production
+environment of a specific enterprise.
 
-Ovaj rad se bavi jednim uskim, ali praktično važnim pitanjem: može li AI prodajni
-chatbot pretvoriti ranije nemonetizovan informativni kanal u merljiv prodajni
-kanal, i pod kojim uslovima. Umesto poređenja više raznorodnih slučajeva, biramo
-dubinski pristup jednom slučaju sa najčistijom merom ishoda: razgovor vodi ka
-potvrđenoj prodaji i prihodu, pri čemu se svaki korak beleži kroz produkcioni
-API. Studija se oslanja na iskustvo istog istraživačkog tima sa Fakulteta
-tehničkih nauka u Novom Sadu u razvoju višeagentskih AI sistema
-[@stojanovic2024telfor].
+This paper addresses one narrow but practically important question: can an AI
+sales chatbot turn a previously unmonetized informational channel into a
+measurable sales channel, and under what conditions. Rather than comparing
+several heterogeneous cases, we choose an in-depth approach to a single case with
+the cleanest outcome measure: a conversation leads to a confirmed sale and
+revenue, with each step recorded through a production API. The study draws on the
+same research team's experience at the Faculty of Technical Sciences in Novi Sad
+in developing multi-agent AI systems [@stojanovic2024telfor].
 
-Doprinos rada je trojak. Prvo, opisujemo AI prodajni chatbot kao inženjerski
-artefakt: agentsku arhitekturu, odgovaranje zasnovano na kontrolisanoj bazi
-znanja i podatkovnu platformu koja služi kao merni instrument iza poslovnih
-brojki. Drugo, definišemo mere (kvalifikovan lead, konverzija, potvrđena
-prodaja) i njihov izvor podataka, čime rezultate činimo proverljivim. Treće,
-izveštavamo o produkcionim ishodima tokom tri meseca u stvarnom MSP okruženju u
-Srbiji i tumačimo ih u odnosu na postojeće nalaze, uz eksplicitno navođenje
-ograničenja i konflikta interesa. Rad je uokviren smernicama za studije slučaja
-u softverskom inženjerstvu [@runeson2009; @rashid2019].
+The contribution is threefold. First, we describe the AI sales chatbot as an
+engineering artifact: the agentic architecture, retrieval-based answering over a
+controlled knowledge base, and the data platform that serves as the measurement
+instrument behind the business figures. Second, we define the measures (qualified
+lead, conversion, confirmed sale) and their data source, making the results
+verifiable. Third, we report production outcomes over three months in a real SME
+setting in Serbia and interpret them against existing findings, with an explicit
+statement of limitations and conflict of interest. The paper is framed by
+guidelines for case studies in software engineering [@runeson2009; @rashid2019].
 
-# Srodni radovi
+# Related Work {#sec:related-work}
 
-## AI konverzacioni agenti u prodaji i podršci
+## Conversational AI agents in sales and support {#sec:agents-sales-support}
 
-Efekti konverzacionih agenata na ponašanje kupaca dokumentovani su u nekoliko
-terenskih studija. Luo i saradnici pokazuju da neotkriveni chatbotovi mogu biti
-podjednako efikasni kao iskusni ljudski agenti, ali da otkrivanje identiteta
-bota pre razgovora značajno smanjuje stopu kupovine [@luo2019]. Schanke i
-saradnici ispituju humanizaciju chatbota i nalaze da ona povećava prihvatanje,
-ali uz kompromise poput veće osetljivosti na cenu [@schanke2021]. Sistematski
-pregled iskustva korisnika sa chatbotovima u podršci mapira dimenzije kvaliteta
-i faktore prihvatanja [@nicolescu2022]. Ovi radovi postavljaju fenomen i njegove
-dizajn-varijable, ali mere efekte u kontrolisanim uslovima i kratkim vremenskim
-okvirima.
+The effects of conversational agents on customer behavior have been documented in
+several field studies. Luo and colleagues show that undisclosed chatbots can be
+as effective as experienced human agents, but that disclosing the bot's identity
+before a conversation significantly reduces the purchase rate [@luo2019]. Schanke
+and colleagues examine chatbot anthropomorphism and find that it increases
+acceptance, though with trade-offs such as greater price sensitivity
+[@schanke2021]. A systematic review of user experience with support chatbots maps
+the quality dimensions and acceptance factors [@nicolescu2022]. These works
+establish the phenomenon and its design variables, but they measure effects under
+controlled conditions and over short time frames.
 
-## AI adopcija u malim i srednjim preduzećima
+## AI adoption in small and medium-sized enterprises {#sec:ai-adoption-smes}
 
-Pregledi adopcije AI u MSP izdvajaju barijere poput nedostatka znanja, troškova
-i neadekvatne infrastrukture [@oldemeyer2024], a novija sinteza opisuje
-literaturu kao fragmentisanu i poziva na više empirijskih, kontekstualnih studija
-o tome kako MSP zaista koriste AI [@schwaeke2024]. Kao teorijski okvir za uvođenje
-AI u resursno ograničenim MSP u EU predložen je iterativni pristup koji kombinuje
-perspektive tehnologije, organizacije i okruženja sa pogledom zasnovanim na
-resursima [@zuferi2026toerbv]. Ovaj kontekst je relevantan za naš slučaj:
-uvođenje bez novih zaposlenih, uz oslanjanje na postojeće tehničke kapacitete
-tima.
+Reviews of AI adoption in SMEs single out barriers such as a lack of knowledge,
+cost, and inadequate infrastructure [@oldemeyer2024], and a more recent synthesis
+describes the literature as fragmented and calls for more empirical, contextual
+studies of how SMEs actually use AI [@schwaeke2024]. As a theoretical framework
+for introducing AI in resource-constrained SMEs in the EU, an iterative approach
+has been proposed that combines the technology, organization, and environment
+perspectives with a resource-based view [@zuferi2026toerbv]. This context is
+relevant to our case: a deployment without new hires, relying on the team's
+existing technical capacity.
 
-## Metodologija studije slučaja
+## Case study methodology {#sec:case-study-methodology}
 
-Za opravdanje dizajna i transparentan tretman pretnji validnosti oslanjamo se na
-smernice za sprovođenje i izveštavanje studija slučaja u softverskom inženjerstvu
-[@runeson2009] i na korak-po-korak vodič za studije slučaja u poslovnim
-istraživanjima [@rashid2019]. Te smernice nalažu eksplicitno navođenje pretnji
-validnosti, što u našem slučaju uključuje konflikt interesa i izostanak kontrolne
-grupe (v. sekciju \ref{sec:metod} i \ref{sec:ogranicenja}).
+To justify the design and to treat threats to validity transparently, we rely on
+guidelines for conducting and reporting case studies in software engineering
+[@runeson2009] and on a step-by-step guide to case studies in business research
+[@rashid2019]. These guidelines require an explicit statement of threats to
+validity, which in our case includes the conflict of interest and the absence of
+a control group (see @sec:method and @sec:limitations).
 
-## Praznina
+## Gap {#sec:gap}
 
-Postojeća literatura ili meri efekte u kontrolisanim eksperimentalnim uslovima
-[@luo2019; @schanke2021], ili u kontekstu MSP poziva na više primenjenih
-studija [@schwaeke2024; @oldemeyer2024]. Nedostaje primenjena, produkciona
-studija uvođenja AI prodajnog chatbota u stvarnom MSP okruženju sa merljivim
-prodajnim ishodima kroz duži period. Ovaj rad popunjava tu prazninu za jedan
-slučaj, uz eksplicitno priznanje ograničenja.
+The existing literature either measures effects under controlled experimental
+conditions [@luo2019; @schanke2021] or, in the SME context, calls for more
+applied studies [@schwaeke2024; @oldemeyer2024]. What is missing is an applied,
+production study of deploying an AI sales chatbot in a real SME setting with
+measurable sales outcomes over an extended period. This paper fills that gap for
+a single case, with an explicit acknowledgment of its limitations.
 
-# Sistem i arhitektura {#sec:sistem}
+# System and Architecture {#sec:system}
 
-Chatbot je implementiran kao višekomponentni sistem na AWS infrastrukturi. Cilj
-ovog opisa je da produkcione brojke učini proverljivim kao ishod inženjerskog
-artefakta, a ne samo kao poslovnu tvrdnju. Arhitektura se opisuje na nivou
-komponenti; interni identifikatori resursa i pristupni podaci nisu navedeni.
+The chatbot was implemented as a multi-component system on AWS infrastructure.
+The aim of this description is to make the production figures verifiable as the
+outcome of an engineering artifact, not merely as a business claim. The
+architecture is described at the component level; internal resource identifiers
+and access credentials are not disclosed.
 
-Konverzacioni agent radi na upravljanoj agentskoj platformi (AWS Bedrock
-AgentCore [@awsbedrock]) uz Strands Agents SDK. Kao osnovni model koristi se
-Amazon Nova [@awsnova], koji podržava strukturisani izlaz i pozivanje alata
-(function calling). Savremeni jezički modeli ovog tipa počivaju na Transformer
-arhitekturi [@vaswani2017attention]. Tok obrade zahteva vodi od korisničkog
-razgovora kroz upravljanje sesijom, brzu putanju za strukturisane korake
-prodajnog toka i, kada je potrebno, pun agentski korak sa alatima specifičnim za
-preduzeće (odabir paketa, kreiranje narudžbine, vođenje workflow-a).
+The conversational agent runs on a managed agentic platform (AWS Bedrock
+AgentCore [@awsbedrock]) with the Strands Agents SDK. Amazon Nova [@awsnova]
+serves as the base model, supporting structured output and function calling.
+Modern language models of this type rest on the Transformer architecture
+[@vaswani2017attention]. Request processing flows from the user conversation
+through session management, a fast path for structured steps of the sales
+workflow, and, when needed, a full agentic step with enterprise-specific tools
+(package selection, order creation, workflow orchestration).
 
-Odgovaranje je zasnovano na pretrazi nad kontrolisanom bazom znanja (RAG)
-[@lewis2020rag], gde se relevantni sadržaj pronalazi u vektorskom indeksu
-zasnovanom na biblioteci za pretragu sličnosti [@johnson2021faiss]. Baza znanja
-se automatski gradi i verzioniše iz sadržaja preduzeća, čime se cene i
-informacije drže pod kontrolom i smanjuje rizik od netačnih odgovora. Ovi
-arhitektonski izbori (RAG na AWS, izbor izvršnog okruženja) nastavljaju se na
-raniju uporednu evaluaciju istog tima [@stojanovic2025aws; @vidakovic2025docker],
-te nisu ad hoc odluke.
+Answering is based on retrieval over a controlled knowledge base (RAG)
+[@lewis2020rag], where relevant content is found in a vector index built on a
+similarity search library [@johnson2021faiss]. The knowledge base is built and
+versioned automatically from the enterprise's content, which keeps prices and
+information under control and reduces the risk of inaccurate answers. These
+architectural choices (RAG on AWS, the choice of runtime environment) build on
+the same team's earlier comparative evaluation
+[@stojanovic2025aws; @vidakovic2025docker], so they are not ad hoc decisions.
 
-Kvalifikovani leadovi i potvrde iz razgovora šalju se timu i korisniku
-asinhronim servisom za obaveštenja. Zasebna podatkovna platforma automatski
-analizira konverzacije (sentiment, teme, kvalitet, ishod) koristeći Amazon Nova
-sa strukturisanim izlazom i agregira metrike. Ta platforma je merni instrument
-iza brojki u ovom radu: ona definiše šta je jedna konverzacija i klasifikuje
-ishode razgovora. Slika \ref{fig:arhitektura} prikazuje tok sistema.
+Qualified leads and confirmations from conversations are sent to the team and the
+user through an asynchronous notification service. A separate data platform
+automatically analyzes the conversations (sentiment, topics, quality, outcome)
+using Amazon Nova with structured output, and aggregates the metrics. This
+platform is the measurement instrument behind the figures in this paper: it
+defines what a single conversation is and classifies conversation outcomes.
+@fig:arhitektura shows the system flow.
 
-![Arhitektura AI prodajnog chatbota i podatkovne platforme: konverzacioni agent na upravljanoj platformi sa RAG bazom znanja, kupovina u razgovoru kroz prodajni API, i zasebna podatkovna platforma koja analizira konverzacije i agregira metrike.](figures/arhitektura.svg){#fig:arhitektura width=90%}
+<!-- TODO: The architecture diagram (figures/arhitektura.svg) has Serbian labels; localize the diagram to English later. -->
 
-# Metod {#sec:metod}
+![Architecture of the AI sales chatbot and the data platform: a conversational agent on a managed platform with a RAG knowledge base, in-conversation purchasing through the sales API, and a separate data platform that analyzes conversations and aggregates metrics.](figures/arhitektura.svg){#fig:arhitektura width=90%}
 
-Primenjujemo dizajn pojedinačne studije slučaja [@runeson2009; @rashid2019].
-Jedinica analize je uvođenje AI prodajnog chatbota u preduzeću Atlas24h (pomoć
-na putu), za posmatrani period maj do jul 2026. godine.
+# Method {#sec:method}
 
-## Definicije mera
+We apply a single-case study design [@runeson2009; @rashid2019]. The unit of
+analysis is the deployment of an AI sales chatbot at Atlas24h (roadside
+assistance), for the observed period from May to July 2026.
 
-Da bi rezultati bili proverljivi, mere definišemo eksplicitno:
+## Metric definitions {#sec:metric-definitions}
 
-- **Kvalifikovan lead**: konverzacija u kojoj je korisnik iskazao nameru i
-  dostavio podatke potrebne za nastavak prodajnog toka.
-- **Konverzija**: udeo kvalifikovanih leadova koji rezultuju potvrđenom
-  prodajom, izražen u procentima.
-- **Potvrđena prodaja**: transakcija zabeležena kroz produkcioni prodajni API
-  preduzeća.
+To make the results verifiable, we define the measures explicitly:
 
-## Izvor podataka
+- **Qualified lead**: a conversation in which the user expressed intent and
+  provided the data needed to continue the sales workflow.
+- **Conversion**: the share of qualified leads that result in a confirmed sale,
+  expressed as a percentage.
+- **Confirmed sale**: a transaction recorded through the enterprise's production
+  sales API.
 
-Podaci potiču iz dva izvora u produkciji: prodajnog API-ja preduzeća (potvrđene
-prodaje i prihod) i podatkovne platforme opisane u sekciji \ref{sec:sistem}
-(klasifikacija ishoda konverzacija i agregacija metrika). Prihod je izražen u
-evrima kako je verifikovan u internim izveštajima o slučaju.
+## Data sources {#sec:data-sources}
 
-## Konflikt interesa {#sec:koi}
+The data come from two production sources: the enterprise's sales API (confirmed
+sales and revenue) and the data platform described in @sec:system (classification
+of conversation outcomes and aggregation of metrics). Revenue is expressed in
+euros as verified in the internal case reports.
 
-Autor je implementator sistema koji se ispituje. Svi podaci su produkcioni podaci
-samog preduzeća, bez nezavisne revizije i bez kontrolne grupe. Klasifikacija
-ishoda i agregacija metrika izvršeni su instrumentima koje je razvio isti tim.
-Ovo predstavlja konflikt interesa i pretnju validnosti koju eksplicitno navodimo;
-posledice za tumačenje rezultata razrađene su u sekciji \ref{sec:ogranicenja}.
+## Conflict of interest {#sec:conflict-of-interest}
 
-# Rezultati
+The author is the implementer of the system under study. All data are the
+enterprise's own production data, without an independent audit and without a
+control group. Outcome classification and metric aggregation were performed with
+instruments developed by the same team. This constitutes a conflict of interest
+and a threat to validity that we state explicitly; its consequences for
+interpreting the results are elaborated in @sec:limitations.
 
-Tokom posmatrana tri meseca, prodaja ostvarena kroz AI prodajni chatbot rasla je
-i po broju transakcija i po prihodu (Tabela \ref{tbl:rast}). Broj potvrđenih
-prodaja porastao je sa 196 u maju na 558 u junu i 1.705 u julu 2026, dok je
-verifikovani prihod porastao sa 15.200 na 38.700 i 113.722 evra mesečno.
+# Results {#sec:results}
 
-| Mesec (2026) | Potvrđene prodaje | Prihod (EUR) |
-|--------------|-------------------|--------------|
-| Maj          | 196               | 15.200       |
-| Jun          | 558               | 38.700       |
-| Jul          | 1.705             | 113.722      |
+Over the three observed months, sales generated through the AI sales chatbot grew
+both in transaction count and in revenue (@tbl:rast). The number of confirmed
+sales rose from 196 in May to 558 in June and 1,705 in July 2026, while verified
+revenue rose from 15,200 to 38,700 and 113,722 euros per month.
 
-: Rast potvrđenih prodaja i prihoda kroz AI prodajni chatbot, maj do jul 2026. {#tbl:rast}
+| Month (2026) | Confirmed sales | Revenue (EUR) |
+|--------------|-----------------|---------------|
+| May          | 196             | 15,200        |
+| June         | 558             | 38,700        |
+| July         | 1,705           | 113,722       |
 
-Konverzija u razgovoru porasla je sa 43% na 61% nakon omogućavanja kupovine
-unutar samog chata, čime je kanal prešao iz informativne u transakcionu ulogu.
-U julu 2026. AI kanal je doprineo sa 1.811 od ukupno 3.905 prodaja, odnosno
-46,4% ukupne prodaje. U istom periodu učinak ljudskog call centra ostao je
-stabilan (promena od -3,8% na godišnjem nivou), bez povećanja broja zaposlenih.
-Ovo ukazuje da je rast AI kanala predstavljao dodatni kapacitet, a ne
-preraspodelu postojećeg ljudskog učinka.
+: Growth of confirmed sales and revenue through the AI sales chatbot, May to July 2026. {#tbl:rast}
 
-# Diskusija
+In-conversation conversion rose from 43% to 61% after purchasing within the chat
+itself was enabled, which moved the channel from an informational to a
+transactional role. In July 2026, the AI channel contributed 1,811 of a total of
+3,905 sales, that is, 46.4% of all sales. Over the same period, the performance
+of the human call center remained stable (a change of -3.8% year over year),
+with no increase in headcount. This indicates that the growth of the AI channel
+represented additional capacity rather than a redistribution of existing human
+output.
 
-Skok konverzije sa 43% na 61% poklapa se vremenski sa omogućavanjem kupovine u
-razgovoru, što sugeriše da je ključni činilac bilo uklanjanje prekida između
-namere i transakcije, a ne samo kvalitet konverzacije. Ovaj nalaz je u skladu sa
-eksperimentalnim dokazima da konverzacioni agenti mogu ostvariti visoke stope
-kupovine [@luo2019] i da dizajn interakcije oblikuje ishode [@schanke2021].
-Za razliku od tih studija, naši podaci potiču iz kontinuirane produkcije jednog
-preduzeća tokom više meseci, a ne iz kontrolisanog eksperimenta.
+# Discussion {#sec:discussion}
 
-Stabilan učinak ljudskog tima uz istovremeni rast AI kanala podupire tezu da
-uvođenje ovakvog sistema u MSP može povećati ukupni kapacitet bez novog
-zapošljavanja, što je relevantno za barijere adopcije opisane u literaturi
-[@oldemeyer2024; @schwaeke2024].
+The jump in conversion from 43% to 61% coincides in time with enabling purchases
+in the conversation, which suggests that the key factor was removing the break
+between intent and transaction, not conversation quality alone. This finding is
+consistent with experimental evidence that conversational agents can achieve high
+purchase rates [@luo2019] and that interaction design shapes outcomes
+[@schanke2021]. Unlike those studies, our data come from continuous production in
+a single enterprise over several months rather than from a controlled experiment.
 
-## Ograničenja {#sec:ogranicenja}
+The stable performance of the human team alongside the simultaneous growth of the
+AI channel supports the claim that deploying such a system in an SME can increase
+total capacity without new hiring, which is relevant to the adoption barriers
+described in the literature [@oldemeyer2024; @schwaeke2024].
 
-Rezultate treba tumačiti uz nekoliko ozbiljnih ograničenja. Prvo, postoji
-konflikt interesa: autor je implementator sistema, a svi podaci su produkcioni
-podaci preduzeća bez nezavisne verifikacije (sekcija \ref{sec:koi}). Drugo, ne
-postoji kontrolna grupa, pa se posmatrani rast ne može pripisati isključivo
-chatbotu; sezonski efekti, marketinške aktivnosti i drugi faktori nisu izolovani.
-Treće, radi se o jednom slučaju u jednom domenu, što ograničava mogućnost
-generalizacije [@runeson2009]. Merni instrument (klasifikacija ishoda) razvio je
-isti tim, pa i definicije mera nose rizik pristrasnosti. Ove pretnje validnosti
-navodimo eksplicitno, u skladu sa metodološkim smernicama.
+## Limitations {#sec:limitations}
 
-# Zaključak
+The results should be interpreted with several serious limitations in mind.
+First, there is a conflict of interest: the author is the implementer of the
+system, and all data are the enterprise's production data without independent
+verification (@sec:conflict-of-interest). Second, there is no control group, so
+the observed growth cannot be attributed to the chatbot alone; seasonal effects,
+marketing activities, and other factors are not isolated. Third, this is a single
+case in a single domain, which limits generalizability [@runeson2009]. The
+measurement instrument (outcome classification) was developed by the same team,
+so the metric definitions themselves carry a risk of bias. We state these threats
+to validity explicitly, in line with the methodological guidelines.
 
-Rad je predstavio produkcionu studiju slučaja uvođenja AI prodajnog chatbota u
-malom preduzeću u Srbiji, sa opisom arhitekture kao inženjerskog artefakta,
-eksplicitnim definicijama mera i izveštajem o tromesečnim produkcionim ishodima.
-Glavni nalaz je da je omogućavanje kupovine u razgovoru pratio rast konverzije
-sa 43% na 61% i rast prihoda AI kanala do 113.722 evra mesečno, uz stabilan
-ljudski učinak i bez novog zapošljavanja. Doprinos je prvi primenjeni,
-produkcioni korak u istraživačkom programu koji je do sada pokrivao arhitekturu i
-evaluaciju [@stojanovic2025aws; @vidakovic2025docker], sada usmeren na stvarne
-poslovne ishode. Nalaze ograničavaju konflikt interesa, izostanak kontrolne grupe
-i oslanjanje na jedan slučaj. Budući rad obuhvata komparativnu analizu četiri
-slučaja sa usklađenim metrikama u okviru master rada, čime bi se ublažile pretnje
-validnosti vezane za pojedinačni slučaj.
+# Conclusion {#sec:conclusion}
 
-# Reference {-}
+This paper presented a production case study of deploying an AI sales chatbot in a
+small enterprise in Serbia, describing the architecture as an engineering
+artifact, giving explicit measure definitions, and reporting three months of
+production outcomes. The main finding is that enabling purchases in the
+conversation was accompanied by a rise in conversion from 43% to 61% and growth
+in the AI channel's revenue to 113,722 euros per month, with stable human
+performance and no new hiring. The contribution is the first applied, production
+step in a research program that has so far covered architecture and evaluation
+[@stojanovic2025aws; @vidakovic2025docker], now directed at real business
+outcomes. The findings are limited by the conflict of interest, the absence of a
+control group, and reliance on a single case. Future work includes a comparative
+analysis of four cases with aligned metrics within a master's thesis, which would
+mitigate the threats to validity tied to a single case.
+
+# References {-}
 
 ::: {#refs}
 :::
