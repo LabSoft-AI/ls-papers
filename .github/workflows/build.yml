@@ -17,6 +17,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # DOCX/ODT reference templates are stored in git-lfs; without this the
+          # checkout leaves LFS pointer files and pandoc fails the DOCX/ODT build
+          # ("Did not find end of central directory signature").
+          lfs: true
 
       - name: Install LaTeX, fonts, and SVG support
         run: |
