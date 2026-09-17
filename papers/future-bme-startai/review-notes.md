@@ -7,24 +7,25 @@
 - **Grana:** feature/paper-future-bme
 - **Recenzent:** ls-reviewer
 - **Datum:** 2026-09-17
-- **Krug:** nezavisan pregled trenutne verzije (prethodni nalazi I1/I2/I3 zatvoreni; ovaj izveštaj prepisan od nule)
+- **Krug:** nezavisan pregled trenutne verzije od nule; verovatno završni krug pre PR-a (ceo izveštaj prepisan, istorija u Gitu)
 
 ## Opšti sud
 
-Rad je koherentan, pošten i tehnički verodostojan. Teza (AI sales chatbot
-pretvara nemonetizovan informativni kanal u merljiv prodajni kanal) provlači se
-dosledno kroz apstrakt → uvod → metod → rezultate → zaključak. Sve ključne
-brojke su sledljive do `research-notes.md` (produkcioni case study) i međusobno
-aritmetički konzistentne. Konflikt interesa i izostanak kontrolne grupe nisu
-sakriveni nego eksplicitno izneti kao pretnje validnosti (posebna pod-sekcija +
-Ograničenja). Struktura je kompletna, cross-referencije i citiranje (u oba
-smera) su ispravni. Ranije zatvoreni nalazi (definicija "resolved without human
-intervention", definicija "close rate" + 57% poređenje, apstrakt prihod u tri
-tačke) potvrđeni kao razrešeni u trenutnom tekstu.
+Rad je spreman za predaju. Koherentan je, pošten i tehnički verodostojan. Teza
+(AI sales chatbot pretvara nemonetizovan informativni kanal u merljiv prodajni
+kanal) provlači se dosledno kroz apstrakt → uvod → metod → rezultate →
+diskusiju → zaključak. Sve ključne brojke su sledljive do `research-notes.md`
+(produkcioni case study) i međusobno aritmetički konzistentne — uključujući novu
+kolonu konverzije u @tbl:rast i usaglašenu vrednost close rate-a (72,5%).
+Konflikt interesa i izostanak kontrolne grupe nisu sakriveni nego eksplicitno
+izneti kao pretnje validnosti (posebna pod-sekcija + Ograničenja). Struktura je
+kompletna, cross-referencije i citiranje (u oba smera) ispravni. Novi pasusi u
+§Discussion (in-chat vs follow-up levak; SME implikacije) uokvireni su kao
+HIPOTEZA i ne prelaze u nepotkrepljene tvrdnje.
 
 Nema kritičnih ni važnih (blokirajućih) zamerki. Preostale stavke su manje
-(stilske/kozmetičke) ili već poznati bibliografski TODO-ovi koji ne predstavljaju
-nove mane.
+(stilske/interpretativne nijanse) ili već poznati bibliografski TODO-ovi koji ne
+predstavljaju nove mane.
 
 ---
 
@@ -34,23 +35,29 @@ Nema.
 
 Provereno i potvrđeno kao ispravno:
 
-- **Sve brojke sledljive.** Rast prodaje 196 → 558 → 1.705 i prihod 15.200 →
-  38.700 → 113.722 EUR (@tbl:rast i tekst §Results) doslovno se poklapaju sa
-  growth trajectory u `research-notes.md` (§1, Atlas24h AI Sales Chatbot).
-- **Aritmetika levka verifikovana.** 1.705 / 2.776 = 61,4% (tekst navodi 61,4%);
-  559 + 1.146 = 1.705 (poklapa se sa ukupnim prodajama u julu); close rate in-chat
-  559/771 = 72,5% (tekst i izvor zaokružuju na 73%); follow-up 1.146/2.005 = 57,2%
-  (tekst: 57%); 63% rešeno bez ljudske intervencije — svi iz `research-notes.md`,
-  raspodela ishoda jul 2026.
+- **Sve brojke sledljive, uklj. novu kolonu konverzije.** Rast prodaje
+  196 → 558 → 1.705 i prihod 15.200 → 38.700 → 113.722 EUR (@tbl:rast i §Results)
+  doslovno se poklapaju sa growth trajectory u `research-notes.md` (§1). Nova
+  kolona konverzije 42,8% / 42,9% / 61,4% takođe se poklapa sa izvorom
+  ("Conversion rate: — / 42.8% / 42.9% / 61.4%") i sa nezavisno preračunatim
+  vrednostima: 196/458 = 42,79%, 558/1301 = 42,89%, 1.705/2.776 = 61,42%.
+- **Close rate 72,5% dosledan i tačan.** 559/771 = 72,50%; rad sada koristi
+  "72.5%" na svim mestima (apstrakt-nezavisno, §Results i §Discussion), čime je
+  uklonjena ranija nedoslednost sa "73%". Follow-up grana 1.146/2.005 = 57,16% →
+  "57%"; razlika ≈ 15,3 pp, što rad naziva "roughly fifteen percentage points".
+- **Aritmetika levka verifikovana.** 559 + 1.146 = 1.705 (poklapa se sa ukupnim
+  prodajama u julu); 63% rešeno bez ljudske intervencije — svi iz
+  `research-notes.md`, raspodela ishoda jul 2026.
 - **Konflikt interesa i kontrolna grupa** tretirani eksplicitno i konzervativno
   (@sec:conflict-of-interest + @sec:limitations): autor = implementator, podaci
-  su produkcioni bez nezavisne revizije, bez kontrolne grupe, jedan slučaj/domen.
+  produkcioni bez nezavisne revizije, bez kontrolne grupe, jedan slučaj/domen.
   Tvrdnja o inkrementalnosti oslonjena je na stabilan ljudski učinak (-3,8% g/g),
-  a ne na kauzalni zaključak — što je metodološki korektno.
-- **Nema overclaiminga.** Diskusija koristi oprezan jezik ("coincides in time",
-  "suggests", "supports the claim") umesto tvrdnji o uzročnosti; rast se ne
-  pripisuje isključivo chatbotu (seasonal/marketing efekti eksplicitno nisu
-  izolovani).
+  ne na kauzalni zaključak — metodološki korektno.
+- **Novi §Discussion pasusi NE prelaze u overclaiming.** Pasus o levku koristi
+  "is most readily explained by", "points in the same direction", "consistent
+  with"; pasus o SME implikacijama izričito se zatvara rečenicom da počiva na
+  jednom slučaju bez kontrolne grupe i "should be treated as a hypothesis for
+  other settings rather than a general result". Nema kauzalne tvrdnje.
 
 ## IMPORTANT
 
@@ -60,62 +67,60 @@ Provereno i potvrđeno kao ispravno:
 
 - **Koherentnost apstrakt ↔ uvod ↔ zaključak.** Apstrakt najavljuje arhitekturu,
   definicije mera, tri meseca produkcije i ograničenja; uvod ponavlja trojni
-  doprinos (artefakt / definicije mera / produkcioni ishodi); zaključak zatvara
-  iste tri tačke sa istim brojkama (43%→61%, 113.722 EUR). Nema nesaglasja.
-- **Struktura kompletna.** Introduction → Related Work (4 pod-sekcije: agenti u
-  prodaji/podršci, adopcija u MSP, metodologija studije slučaja, Gap) → System
-  and Architecture → Method (metric definitions, data sources, conflict of
-  interest) → Results → Discussion (+ Limitations) → Conclusion → References.
-  Logičan tok, bez praznina.
+  doprinos; zaključak zatvara iste tri tačke sa istim brojkama (43%→61%,
+  113.722 EUR). Nema nesaglasja.
+- **Struktura kompletna.** Introduction → Related Work (agenti u prodaji/podršci,
+  adopcija u MSP, metodologija studije slučaja, Gap) → System and Architecture →
+  Method (metric definitions, data sources, conflict of interest) → Results →
+  Discussion (+ Limitations) → Conclusion → References. Logičan tok, bez praznina.
 - **Definicije metrika prisutne pre upotrebe** (@sec:metric-definitions):
   qualified lead, conversion, confirmed sale, "resolved without human
-  intervention" (I1 — sada definisano preko data platforme), "close rate" (I2 —
-  definisano po grani levka). Sve metrike koje se pojavljuju u Results imaju
+  intervention", "close rate". Svaka metrika koja se pojavljuje u Results ima
   definiciju.
-- **Citiranje integritet, oba smera.**
-  - Svi in-text `[@key]` (16 jedinstvenih: luo2019, schanke2021, nicolescu2022,
-    oldemeyer2024, schwaeke2024, zuferi2026toerbv, runeson2009, rashid2019,
-    stojanovic2024telfor, stojanovic2025aws, vidakovic2025docker, awsbedrock,
-    awsnova, vaswani2017attention, lewis2020rag, johnson2021faiss) imaju unos u
-    `references.bib`.
-  - Neiskorišćeni unosi (4): `wang2023`, `zhang2026`, `laranjo2018`,
-    `milneives2020` — svi eksplicitno označeni u `.bib` komentarom "Rezervisano
-    za master #16 — namerno necitiran". Namerno zadržani, ne greška.
-- **Cross-reference validni.** Svi `@sec:*`, `@tbl:rast`, `@fig:arhitektura`
-  pokazuju na definisane labele (#sec:method, #sec:system, #sec:limitations,
-  #sec:conflict-of-interest, #tbl:rast, #fig:arhitektura). Nema visećih
-  referenci.
-- **SVG figura na engleskom.** `figures/arhitektura.svg` — sav tekst (User (web
+- **Citiranje integritet, oba smera.** Svih 16 jedinstvenih in-text ključeva
+  (luo2019, schanke2021, nicolescu2022, oldemeyer2024, schwaeke2024,
+  zuferi2026toerbv, runeson2009, rashid2019, stojanovic2024telfor,
+  stojanovic2025aws, vidakovic2025docker, awsbedrock, awsnova,
+  vaswani2017attention, lewis2020rag, johnson2021faiss) ima unos u
+  `references.bib`. Neiskorišćeni unosi (4): `wang2023`, `zhang2026`,
+  `laranjo2018`, `milneives2020` — svi eksplicitno označeni komentarom
+  "Rezervisano za master #16 — namerno necitiran". Namerno zadržani, ne greška.
+- **Cross-reference validni.** Svih 6 upotrebljenih referenci (@fig:arhitektura,
+  @tbl:rast, @sec:method, @sec:system, @sec:conflict-of-interest,
+  @sec:limitations) pokazuje na definisane labele. Nema visećih referenci.
+- **SVG figura na engleskom.** `figures/arhitektura.svg` — svi labeli (User (web
   chat), Conversational agent, Session management, Agentic step, RAG (FAISS),
   In-conversation purchase, Notification service, Conversation export, Data
-  platform, Measurable outcomes) je na engleskom; usklađeno sa jezikom rada.
+  platform, Metric aggregation, Measurable outcomes) na engleskom; usklađeno sa
+  jezikom rada.
 
 ## MINOR
 
-1. **Zaokruživanje 42,8% → "43%" u apstraktu i tekstu (naracija).**
-   Ukotvljeno: apstrakt ("increased from 43% to 61%") i §Results ("rose from 43%
-   to 61%"). `research-notes.md` daje maj = 42,8%, jun = 42,9%, jul = 61,4%.
-   Zašto se pominje: "43%→61%" je zapravo maj→jul (jun je takođe ~43%), pa
-   "from 43% to 61%" implicira dvotačkasti skok iako je jun bio na istom nivou
-   kao maj. Nije greška (zaokruživanje 42,8→43 i 61,4→61 je korektno, a tekst na
-   jednom mestu i navodi precizno "61,4%"), ali predlog: u §Results razmotriti
-   kratku napomenu da je jun ostao na ~43% i da skok nastaje u julu (posle
-   omogućavanja kupovine), radi potpune preciznosti. Opciono.
+1. **Uporedivost dve grane levka (in-chat 72,5% vs follow-up 57%) — nijansa
+   selekcije.**
+   Ukotvljeno: §Discussion, pasus koji razliku od ~15 pp objašnjava trenutkom
+   kupovine ("most readily explained by the point at which the purchase
+   happens"). Zašto se pominje: dve grane možda nisu potpuno uporedive populacije
+   — korisnik koji završi kupovinu u chatu po definiciji ima jaču/neposredniju
+   nameru od onoga koji ostavlja kontakt za kasnije, pa deo razlike može biti
+   efekat selekcije, a ne samo trenutak transakcije. Rad ovo NE imenuje
+   eksplicitno. Nije mana argumenta (pasus je već uokviren kao hipoteza i
+   oprezan), ali predlog: jedna polurečenica koja priznaje da se grane razlikuju
+   i po nameri korisnika dodatno bi ojačala interpretaciju. Opciono.
 
-2. **"73%" close rate — zaokruženo naviše sa 72,5%.**
-   Ukotvljeno: §Results ("close rate on in-chat purchases was 73% (559 of 771...)").
-   559/771 = 72,5%. Izvor (`research-notes.md`) sam navodi "73%", pa je rad
-   dosledan izvoru. Standardno zaokruživanje 72,5 → 73 je prihvatljivo; pominje
-   se samo radi transparentnosti (nije mana). Bez izmene, osim ako se želi
-   navesti "72,5%".
+2. **Zaokruživanje 42,8% → "43%" u naraciji.**
+   Ukotvljeno: apstrakt i §Results/§Discussion ("from 43% to 61%"). Ovo je
+   sada eksplicitno razjašnjeno u §Results dodatom napomenom da je konverzija
+   ostala ~43% u maju (42,8%) i junu (42,9%), a skok na 61,4% nastaje u julu —
+   "a May-to-July change rather than a month-over-month increase". Time je ranija
+   MINOR zamerka rešena; napomena je tačna i dovoljna. Nema dalje akcije.
 
-3. **Dužina rada — pri donjoj granici opsega 5–8 strana.**
-   Ukotvljeno: telo rada ~2.000 reči + apstrakt (~200) + jedna tabela + jedna
-   figura + ~20 referenci. U dvokolonskom formatu ovo tipično daje ~5–6 strana,
-   dakle unutar 5–8, ali bliže donjoj granici. Tačan broj strana NIJE verifikovan
-   (nije rađen build). Predlog: ako recenzentski format traži bliže 6–7 strana,
-   sekcija Discussion i/ili Architecture podnose još 1–2 pasusa bez gubitka
-   fokusa. Nije obavezno.
+3. **Dužina rada — pri donjoj/srednjoj granici opsega 5–8 strana.**
+   Ukotvljeno: telo ~2.300 reči + apstrakt + jedna tabela (sada sa 4 kolone) +
+   jedna figura + ~20 referenci. Prošireni §Discussion (dva nova pasusa) pomera
+   rad ka sredini opsega. U dvokolonskom formatu tipično ~6 strana, dakle unutar
+   5–8. Tačan broj strana NIJE verifikovan (build nije rađen). Bez akcije osim
+   ako recenzentski format traži bliže gornjoj granici.
 
 4. **Poznati bibliografski TODO-ovi (nasleđeni, NISU nove mane).**
    Navedeni kao poznate otvorene stavke iz `references.bib`/`research-notes.md`,
@@ -123,12 +128,12 @@ Provereno i potvrđeno kao ispravno:
    - `luo2019` — broj sveske (issue 6) nije nezavisno potvrđen (Crossref/OpenAlex/S2
      ga ne navode; DBLP/INFORMS nedostupni preko API-ja). Volume 38 i strane
      937–947 potvrđeni. Zadržano `number = {6}` uz TODO; potvrditi kod izdavača
-     (INFORMS) pre finalne predaje.
+     (INFORMS) pre finalne verzije ako je izvodljivo.
    - `Isabella et al. (2025), Journal of Business Research` (chatbot vs landing
      page) — nije pouzdano identifikovan pretragom, NIJE dodat u `.bib`
      (integritet — ne izmišljati izvor). Ostaje TODO za autora: potvrditi tačan
      navod ili odustati. Ne blokira predaju jer se ne citira.
-   Finalizovano u prethodnom krugu i potvrđeno ispravnim: oldemeyer2024 →
+   Finalizovano ranije i potvrđeno ispravnim u ovom krugu: oldemeyer2024 →
    2025/75(2):1185–1227; schwaeke2024 → 2025/63(3):1297–1331; rashid2019 →
    article-number 1609406919862424 (bez raspona strana); lewis2020rag → NeurIPS
    strane 9459–9474; vaswani2017attention → strane izostavljene (zvanični NeurIPS
@@ -139,37 +144,43 @@ Provereno i potvrđeno kao ispravno:
 
 | Prioritet | Broj nalaza | Sažetak |
 |-----------|-------------|---------|
-| CRITICAL  | 0           | Nema. Brojke, konflikt interesa i tvrdnje verifikovani. |
-| IMPORTANT | 0           | Nema. Koherentnost, struktura, citiranje, cross-ref, SVG — ispravni. |
-| MINOR     | 4           | Zaokruživanje 43%/73% (naracija), dužina pri donjoj granici, poznati bib TODO-ovi (luo2019 issue, Isabella nije nađen). |
+| CRITICAL  | 0           | Nema. Brojke (uklj. kolonu konverzije i 72,5%), konflikt interesa i tvrdnje verifikovani. |
+| IMPORTANT | 0           | Nema. Koherentnost, struktura, citiranje, cross-ref, SVG — ispravni; novi Discussion pasusi uokvireni kao hipoteza. |
+| MINOR     | 4           | Nijansa selekcije u poređenju grana levka (opciono); zaokruživanje 43% već razjašnjeno u tekstu; dužina pri sredini opsega; poznati bib TODO-ovi (luo2019 issue, Isabella nije nađen). |
 
 ## Checklist coverage
 
 1. **Sadržaj / argumentacija** — provereno: koherentnost apstrakt↔uvod↔zaključak
-   (OK), nema overclaiminga (oprezan jezik u Discussion), konflikt interesa +
-   izostanak kontrolne grupe eksplicitni, metod jasan i ponovljiv (definicije
-   mera + izvori podataka), SVE brojke sledljive i aritmetički tačne
-   (559/771/1146/2005/63%/73% + 196/558/1705, 15200/38700/113722, 61,4%).
+   (OK); nema overclaiminga (oprezan jezik; novi §Discussion pasusi eksplicitno
+   uokvireni kao hipoteza); konflikt interesa + izostanak kontrolne grupe
+   eksplicitni; metod jasan i ponovljiv (definicije mera + izvori podataka); SVE
+   brojke sledljive i aritmetički tačne, uključujući novu kolonu konverzije
+   (42,8/42,9/61,4) i 72,5% (559/771). Jedina nijansa: uporedivost grana levka
+   (MINOR 1).
 2. **Struktura + 5–8 strana** — sve očekivane sekcije prisutne i logično povezane;
-   dužina unutar opsega ali pri donjoj granici (MINOR 3; tačan broj strana
-   neproveren — build nije rađen).
+   dužina unutar opsega, prošireni Discussion pomera ka sredini (MINOR 3; tačan
+   broj strana neproveren — build nije rađen).
 3. **Citiranje integritet (oba smera)** — svih 16 in-text ključeva ima unos;
    4 neiskorišćena unosa namerno rezervisana za master #16 (označeni); poznati
-   TODO metapodaci navedeni kao poznate stavke (MINOR 4), ne kao nove mane.
-4. **Cross-ref @sec/@tbl/@fig** — svi validni, pokazuju na definisane labele.
+   TODO metapodaci (luo2019 issue, Isabella nije nađen) navedeni kao poznate
+   stavke (MINOR 4), ne kao nove mane.
+4. **Cross-ref @sec/@tbl/@fig** — svih 6 upotrebljenih validni, pokazuju na
+   definisane labele.
 5. **Stil / SME doslednost / AI slop / SVG / metrike** — terminologija dosledna
    ("AI sales chatbot", "SME", "data platform"); nema AI slopa (nema em-dash
-   umetaka kao stilskog trika, nema emoji-ja ni klišea); SVG na engleskom;
-   sve metrike definisane pre upotrebe.
+   umetaka kao stilskog trika, nema emoji-ja ni klišea); SVG na engleskom; sve
+   metrike definisane pre upotrebe.
 
 ## Finalna procena spremnosti
 
-**Spreman uz manje revizije (opciono).**
+**SPREMAN ZA PR / predaju** (uz jednu opcionu manju reviziju).
 
-Rad je suštinski spreman za predaju. Nema kritičnih ni važnih zamerki: brojke su
-verifikovane, argumentacija poštena, struktura i citiranje ispravni. Preostale
-MINOR stavke su opcione (kozmetičko preciziranje zaokruživanja, eventualno
-proširenje ka gornjoj granici strana) ili nasleđeni bibliografski TODO-ovi
-(luo2019 issue kod izdavača; Isabella izvor — potvrditi ili izostaviti) koji ne
-blokiraju predaju. Preporuka: rešiti luo2019 issue pre finalne verzije ako je
-izvodljivo; ostalo po nahođenju autora.
+Rad je suštinski i formalno spreman. Nema kritičnih ni važnih zamerki: brojke su
+verifikovane (uključujući novu kolonu konverzije i usaglašeni close rate 72,5%),
+argumentacija poštena, novi §Discussion pasusi ostaju u granicama hipoteze,
+struktura i citiranje ispravni, cross-ref i SVG uredni. Preostale MINOR stavke su
+opcione (polurečenica o selekciji između grana levka; eventualno širenje ka
+gornjoj granici strana) ili nasleđeni bibliografski TODO-ovi (luo2019 issue kod
+izdavača; Isabella izvor — potvrditi ili izostaviti) koji ne blokiraju predaju.
+Preporuka: otvoriti PR sada; luo2019 issue rešiti pre finalne verzije ako je
+izvodljivo, ostalo po nahođenju autora.
