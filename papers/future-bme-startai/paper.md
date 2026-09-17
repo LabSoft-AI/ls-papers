@@ -193,24 +193,28 @@ both in transaction count and in revenue (@tbl:rast). The number of confirmed
 sales rose from 196 in May to 558 in June and 1,705 in July 2026, while verified
 revenue rose from 15,200 to 38,700 and 113,722 euros per month.
 
-| Month (2026) | Confirmed sales | Revenue (EUR) |
-|--------------|-----------------|---------------|
-| May          | 196             | 15,200        |
-| June         | 558             | 38,700        |
-| July         | 1,705           | 113,722       |
+| Month (2026) | Confirmed sales | Revenue (EUR) | Conversion |
+|--------------|-----------------|---------------|------------|
+| May          | 196             | 15,200        | 42.8%      |
+| June         | 558             | 38,700        | 42.9%      |
+| July         | 1,705           | 113,722       | 61.4%      |
 
-: Growth of confirmed sales and revenue through the AI sales chatbot, May to July 2026. {#tbl:rast}
+: Growth of confirmed sales, revenue, and in-conversation conversion through the AI sales chatbot, May to July 2026. {#tbl:rast}
 
 In-conversation conversion rose from 43% to 61% (1,705 of 2,776 qualified leads,
 that is 61.4%), coinciding with enabling purchasing within the chat itself, which
-moved the channel from an informational to a transactional role. Before the AI
+moved the channel from an informational to a transactional role. As shown in
+@tbl:rast, conversion held at about 43% in both May (42.8%) and June (42.9%), and
+the rise to 61.4% occurred in July, after purchasing within the conversation was
+enabled; the reported jump is therefore a May-to-July change rather than a
+month-over-month increase across all three months. Before the AI
 sales agent was introduced, the channel operated as a purely informational bot
 and generated no revenue and no sales (0 euros and 0 confirmed sales), against
 1,705 confirmed sales and 113,722 euros in July 2026. Of the 1,705 confirmed
 sales in that month, 559 users completed the entire purchase within the chat
 (in-chat completion) and 1,146 left contact details and converted through
 follow-up, while 63% of all conversations were resolved without human
-intervention. The close rate on in-chat purchases was 73% (559 of 771
+intervention. The close rate on in-chat purchases was 72.5% (559 of 771
 conversations with direct purchase intent), higher than the close rate of the
 follow-up branch (1,146 of 2,005, that is 57%) and the highest in the funnel. Over the same period, the performance of the human call center remained
 stable (a change of -3.8% year over year), with no increase in headcount. This
@@ -229,10 +233,32 @@ purchase rates [@luo2019] and that interaction design shapes outcomes
 [@schanke2021]. Unlike those studies, our data come from continuous production in
 a single enterprise over several months rather than from a controlled experiment.
 
+The same interpretation is visible within the July funnel itself. The in-chat
+branch, where the purchase is completed inside the conversation, closed at 72.5%
+(559 of 771), whereas the follow-up branch, which defers the transaction to a
+later contact, closed at 57% (1,146 of 2,005). The two branches serve the same
+enterprise and the same period, so the gap of roughly fifteen percentage points
+is most readily explained by the point at which the purchase happens: completing
+the transaction while intent is still expressed avoids the drop-off that a
+deferred follow-up introduces. This within-case pattern points in the same
+direction as the May-to-July jump and is consistent with the observation that
+conversational agents can convert at high rates when the interaction leads
+directly to a purchase [@luo2019].
+
 The stable performance of the human team alongside the simultaneous growth of the
 chatbot supports the claim that deploying such a system in an SME can increase
 total capacity without new hiring, which is relevant to the adoption barriers
 described in the literature [@oldemeyer2024; @schwaeke2024].
+
+For other SMEs, the practical reading is narrow but concrete: the largest gain
+came not from the presence of a chatbot but from letting it complete the
+transaction, and the informational channel produced no sales until that step was
+enabled. This suggests that where the enterprise controls the point of purchase,
+placing it inside the conversation is worth prioritizing over conversational
+refinements alone, an emphasis in line with evidence that interaction design
+shapes purchase behavior [@schanke2021]. This reading rests on a single case in a
+single domain and without a control group (@sec:limitations), so it should be
+treated as a hypothesis for other settings rather than a general result.
 
 ## Limitations {#sec:limitations}
 
