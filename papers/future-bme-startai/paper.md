@@ -145,7 +145,7 @@ platform is the measurement instrument behind the figures in this paper: it
 defines what a single conversation is and classifies conversation outcomes.
 @fig:arhitektura shows the system flow.
 
-![Architecture of the AI sales chatbot and the data platform: a conversational agent on a managed platform with a RAG knowledge base, in-conversation purchasing through the sales API, and a separate data platform that analyzes conversations and aggregates metrics.](figures/arhitektura.svg){#fig:arhitektura width=90%}
+![Architecture of the AI sales chatbot and the data platform: a conversational agent on a managed platform with a RAG knowledge base, in-conversation purchasing through the sales API, and a separate data platform that analyzes conversations and aggregates metrics.](figures/arhitektura.png){#fig:arhitektura width=90%}
 
 # Method {#sec:method}
 
