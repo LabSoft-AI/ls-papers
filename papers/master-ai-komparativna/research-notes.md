@@ -141,13 +141,118 @@ Izvor: `~/github/work/world/ap/products/` (v. i architecture-notes iz #15).
 
 ## Literatura
 
-- Baza iz Future-BME (#15) je primenljiva: klasteri A (chatbot), B (voicebots —
-  wang2023, zhang2026 SAD relevantni!), C (zdravstvo — laranjo2018, milneives2020
-  SAD relevantni!), D (MSP), E (metodologija), G (tehničke: RAG/FAISS/Bedrock).
-- Za master treba PROŠIRITI: master teze traže širi pregled literature. TODO
-  ls-researcher: dodati izvore za glasovne agente/voice AI, contact center
-  automation, multimodal conversational AI, comparative case study methodology.
-- references.bib: krenuti od kopije Future-BME bib-a (sve verifikovano) + dopune.
+> Napomena o statusu (ls-researcher, 2026-09-20): references.bib za master je
+> popunjen. Kopirano 20 verifikovanih unosa iz #15 + 11 NOVIH verifikovanih
+> unosa (svaki DOI otvoren preko Crossref/DataCite pre upisa). Ništa izmišljeno.
+> Ispod: (1) šta je preuzeto iz #15, (2) novi klasteri sa PUNOM referencom
+> (izvor) i sa „Kako ulazi u rad" (sinteza autora — jasno odvojeno).
+
+### (1) Preuzeto iz Future-BME (#15) — sve verifikovano, sve primenljivo
+
+- Klaster A (chatbot): luo2019, schanke2021, nicolescu2022.
+- Klaster B (voicebot/call center): wang2023, zhang2026 — u #15 bili rezervisani
+  i necitirani; za master SU relevantni (CS2/CS3 glasovni agenti).
+- Klaster C (zdravstvo): laranjo2018, milneives2020 — relevantni za CS4
+  (HealthMedic). U #15 rezervisani.
+- Klaster D (MSP): oldemeyer2024, schwaeke2024, zuferi2026toerbv.
+- Klaster E (metodologija studije slučaja): runeson2009, rashid2019.
+- Klaster F (self-citation): stojanovic2024telfor, stojanovic2025aws,
+  vidakovic2025docker.
+- Klaster G (tehničke): lewis2020rag, johnson2021faiss, vaswani2017attention,
+  awsbedrock, awsnova.
+
+### (2) NOVI klasteri za master (verifikovano 2026-09-20)
+
+Format: [ključ] PUNA REFERENCA (izvor) → „Kako ulazi u rad" (sinteza autora).
+
+#### Klaster H — Glasovni / spoken dialogue systems
+
+- [young2013pomdp] Young, S., Gašić, M., Thomson, B., Williams, J. D. (2013).
+  „POMDP-Based Statistical Spoken Dialog Systems: A Review." Proceedings of the
+  IEEE, 101(5), 1160–1179. doi:10.1109/JPROC.2012.2225812.
+  Kako ulazi: temeljni pregled klasične arhitekture govornih dijaloških sistema
+  (ASR → SLU → dijaloški menadžer → NLG → TTS). Sinteza: koristim ga da uokvirim
+  kontrast „pre-LLM cevovod (moduli, POMDP)" vs „današnji junior/supervisor
+  pristup sa realtime modelom" u opisu voicebota (CS2/CS3).
+- [chen2017dialogue] Chen, H., Liu, X., Yin, D., Tang, J. (2017). „A Survey on
+  Dialogue Systems: Recent Advances and New Frontiers." ACM SIGKDD Explorations
+  Newsletter, 19(2), 25–35. doi:10.1145/3166054.3166058.
+  Kako ulazi: taksonomija task-oriented vs open-domain dijaloga. Sinteza:
+  pozicioniram sve 4 studije kao task-oriented (prodaja/podrška/zakazivanje), što
+  opravdava metrike orijentisane na ishod (konverzija, deflection, termini).
+
+#### Klaster I — Automatizacija kontakt centara
+
+- [brynjolfsson2025genai] Brynjolfsson, E., Li, D., Raymond, L. (2025).
+  „Generative AI at Work." The Quarterly Journal of Economics, 140(2), 889–942.
+  doi:10.1093/qje/qjae044. (Ranije NBER WP 31161, 2023.)
+  Kako ulazi: terenska studija AI asistenta za ~5.000 agenata kontakt centra
+  (produktivnost, efekat na manje iskusne agente). Sinteza: spoljašnji, nezavisni
+  benchmark naspram mojih produkcionih brojki (deflection CS3 49,3%, ušteda
+  €200K+). Koristim ga i za diskusiju validnosti (oni imaju kontrolisan dizajn,
+  ja nemam — pojačava napomenu o konfliktu interesa).
+
+#### Klaster J — Temelji glasa (STT/TTS, speech-to-speech, Realtime)
+
+- [hinton2012dnn] Hinton, G. i dr. (2012). „Deep Neural Networks for Acoustic
+  Modeling in Speech Recognition." IEEE Signal Processing Magazine, 29(6), 82–97.
+  doi:10.1109/MSP.2012.2205597. — istorijski prelaz ASR-a na duboke mreže.
+- [baevski2020wav2vec2] Baevski, A., Zhou, H., Mohamed, A., Auli, M. (2020).
+  „wav2vec 2.0." arXiv:2006.11477 (NeurIPS 2020). doi:10.48550/arXiv.2006.11477.
+- [radford2022whisper] Radford, A. i dr. (2022). „Robust Speech Recognition via
+  Large-Scale Weak Supervision" (Whisper). arXiv:2212.04356.
+  doi:10.48550/arXiv.2212.04356.
+- [shen2018tacotron2] Shen, J. i dr. (2018). „Natural TTS Synthesis by
+  Conditioning WaveNet on Mel Spectrogram Predictions" (Tacotron 2). ICASSP 2018,
+  4779–4783. doi:10.1109/ICASSP.2018.8461368.
+- [openai2024gpt4o] OpenAI (2024). „GPT-4o System Card." arXiv:2410.21276.
+  doi:10.48550/arXiv.2410.21276.
+- [openai2024realtime] OpenAI. „Realtime API — Guide."
+  https://platform.openai.com/docs/guides/realtime (pristupljeno 2026-09-20).
+  Kako ulazi (ceo klaster J): tehnički temelj glasovnog cevovoda. Sinteza:
+  hinton2012dnn/wav2vec2/whisper = STT strana, tacotron2 = TTS strana, čime
+  objašnjavam šta „klasičan" cevovod radi u modulima; zatim gpt4o + realtime
+  pokazuju zašto naš voicebot spaja STT+TTS u jedan nisko-latentni
+  speech-to-speech tok (junior gpt-4o-realtime), a rezonovanje ide na supervizora
+  (gpt-4.1). Ovo direktno potkrepljuje sekciju arhitekture voicebota.
+
+#### Klaster K — Komparativna / višestruka studija slučaja (metodologija)
+
+- [eisenhardt1989] Eisenhardt, K. M. (1989). „Building Theories from Case Study
+  Research." Academy of Management Review, 14(4), 532–550. doi:10.2307/258557.
+  Kako ulazi: kanonski izvor za teoriju iz višestrukih slučajeva
+  (cross-case poređenje, replikaciona logika). Sinteza: metodološko opravdanje da
+  4 slučaja tretiram kao multiple-case dizajn i da tražim obrasce PREKO slučajeva
+  (osa modalitet/smer/domen/cilj), a ne samo unutar jednog. Uz runeson2009 (SE
+  case study) i rashid2019 (step-by-step) čini metodološki temelj poglavlja
+  „Cilj i metodologija".
+
+#### Klaster L — Task-oriented dialogue (opciono)
+
+- [budzianowski2018multiwoz] Budzianowski, P. i dr. (2018). „MultiWOZ — A
+  Large-Scale Multi-Domain Wizard-of-Oz Dataset for Task-Oriented Dialogue
+  Modelling." EMNLP 2018, 5016–5026. doi:10.18653/v1/D18-1547.
+  Kako ulazi: referentni skup podataka za višedomenski task-oriented dijalog.
+  Sinteza: potpora za pojam „intent + slot/required fields" koji naš workflow
+  framework koristi (validatori telefon/email/tablice/JMBG). Opciono citiranje.
+
+### TODO literatura (neverifikovano — NE izmišljati)
+
+- Multimodalni agent tekst-vs-glas, STROGO recenzirana direktna komparacija:
+  nije nađen jak primarni izvor (kandidati SSRN posted-content / vrlo nov
+  proceedings). Za dalju proveru: SSRN 10.2139/ssrn.6985878 (Text and Voice-
+  augmented AI Chatbots, 2026) i ICHORA 2026 10.1109/ichora69329.2026.11537251
+  (Voice or Text?). Otvoriti pun tekst pre eventualnog upisa.
+- Yin, R. K. „Case Study Research and Applications" (SAGE) — udžbenik bez
+  pouzdanog DOI-ja; ako se citira, uneti kao @book s ISBN i izdanjem (potvrditi
+  iz primerka). Za sada multiple-case argument nose eisenhardt1989 + runeson2009
+  + rashid2019.
+- luo2019 broj sveske (6) i eisenhardt1989 krajnja strana (550) — nasleđeni
+  TODO iz #15 / delimično potvrđeni; potvrditi kod izdavača ako se traži stroga
+  tačnost.
+
+- references.bib: krenuto od kopije Future-BME bib-a (sve verifikovano) +
+  11 novih verifikovanih unosa. Ukupno 31 unos.
 
 ## TODO (redosled)
 
@@ -155,8 +260,10 @@ Izvor: `~/github/work/world/ap/products/` (v. i architecture-notes iz #15).
       automatika / RT i RK – Automobilski softver) — POTVRĐENO
 - [x] Arhitektura: voice pipeline potvrđen (experimental/voicebot, Asterisk +
       OpenAI Realtime junior/supervisor)
-- [ ] ls-researcher: proširiti literaturu (voice AI, contact center, multimodal,
-      comparative methodology) + kopirati verifikovane unose iz #15
+- [x] ls-researcher: proširiti literaturu (voice AI, contact center, multimodal,
+      comparative methodology) + kopirati verifikovane unose iz #15 — URAĐENO
+      2026-09-20: 20 kopiranih + 11 novih verifikovanih (H–L); multimodal
+      tekst-vs-glas ostaje TODO (nema jakog recenziranog izvora).
 - [ ] Definisati zajednički analitički okvir za komparaciju (automation rate + ...)
 - [ ] ls-paper-writer: pisanje po strukturi teze na ĆIRILICI (bezličan glas)
 - [ ] Dijagrami: arhitektura (chatbot + voicebot), po slučaju
