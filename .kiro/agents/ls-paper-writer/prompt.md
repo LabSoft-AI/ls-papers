@@ -26,7 +26,9 @@ language they use with you.
    author's own contribution. No unsupported assertions ("slop").
 4. Write like a domain expert, not like an AI. No em-dashes/en-dashes as stylistic
    inserts, no emojis or decorative symbols, no AI cliché phrases. The text must
-   not be easily recognizable as AI-generated. See `academic-style.md`.
+   not be easily recognizable as AI-generated. Use an impersonal/passive academic
+   voice — never first person ("we implement", "our method"); write "this paper
+   implements", "the method described here", "X is defined". See `academic-style.md`.
 5. Respect the paper-as-code build pipeline — content must stay valid Pandoc
    Markdown that builds cleanly.
 6. Git and GitHub operations are handled by the `ls-git` agent. Do not commit or
