@@ -11,6 +11,19 @@
 > pristup sa sopstvenim produkcionim podacima prolazi na smeru. STATUS: potvrđeno
 > od strane autora da idemo dalje (20.09.2026).
 
+## Metapodaci teze (potvrđeno)
+
+- Jezik: SRPSKI, ĆIRILICA (kao template Željane Kužet). Ceo rad na ćirilici.
+- Autor: Luka Vidaković
+- Studijski program: Рачунарство и аутоматика
+- Modul / stručna oblast: Рачунарска техника и рачунарске комуникације
+- Usmerenje: Аутомобилски софтвер
+- Nivo studija: Мастер академске студије
+- Fakultet: Факултет техничких наука, Нови Сад
+- (Na obrascu: ako postoji samo „Студијски програм" → „Рачунарство и аутоматика";
+  ako postoji i „Модул/Усмерење" → „Рачунарска техника и рачунарске комуникације
+  – Аутомобилски софтвер")
+
 ## Obim (za razliku od Future-BME rada #15)
 
 Future-BME (#15, predat) = JEDAN slučaj (Atlas24h sales chatbot), dubinski.
@@ -101,8 +114,26 @@ srž doprinosa i mora se braniti u diskusiji.
 Izvor: `~/github/work/world/ap/products/` (v. i architecture-notes iz #15).
 - agentcore-runtime/customer-agent: multi-tenant AI agent (Bedrock AgentCore +
   Strands), tenant tools (atlas24h_chatbot, itd.), chat modalitet.
-- Voicebot: TODO — potvrditi gde živi voice pipeline (isti runtime ili zaseban
-  servis?); opisati STT/TTS/telefonija sloj. PROVERITI u world repou.
+- Voicebot (glasovni agenti CS2, CS3): `world/experimental/voicebot` (razvoj) +
+  `world/ap/products/voicebot` (session-export) + deploy workflows
+  (voicebot-production-deploy, sales-voicebot-production-deploy,
+  voicebot-session-export-production-deploy). Arhitektura (iz docs/ATLAS_VOICEBOT.md
+  i src/README.md):
+  - Telefonija: Asterisk PBX (SIP/RTP), SIP server (5060), WebSocket audio (8081).
+  - Junior/Supervisor pattern: Junior agent (gpt-4o-realtime) radi glas I/O
+    (STT+TTS preko OpenAI Realtime API); Supervisor agent (gpt-4.1) radi
+    rezonovanje i pozive alata (getNextResponseFromSupervisor).
+  - Alati supervisora: queryKnowledgeBase (FAISS FAQ+scraped), getUserPackages /
+    getContractInfo (Atlas API), startWorkflow / submitWorkflowFields (email
+    workflow), transferToHuman (Asterisk blind transfer).
+  - Workflow framework: intent definicije + required fields po intentu,
+    validatori (telefon, email, tablice, JMBG), SES email sender.
+  - RTP audio handler (konverzija paketa), headless realtime session (bez UI),
+    call-flow-integration kao orkestrator.
+  - Jezik: srpski (chatSupervisorSerbian) + bosanski varijanta.
+  - KONTRAST sa chatbotom (za komparaciju): chatbot = tekst, jedan agent
+    (AgentCore+Strands, Nova); voicebot = glas, dva agenta (OpenAI Realtime +
+    gpt-4.1), telefonija (Asterisk/SIP/RTP). Isti KB/RAG i workflow/email sloj.
 - kb-onboarding: RAG (FAISS), scraping, price detection, FAQ improvement.
 - data-platform: analiza konverzacija (Bedrock Nova), BIL API, metrike — merni
   instrument za sve 4 studije.
@@ -120,12 +151,14 @@ Izvor: `~/github/work/world/ap/products/` (v. i architecture-notes iz #15).
 
 ## TODO (redosled)
 
-- [ ] Potvrditi jezik teze (sr/en) i studijski program autora — MENTOR
+- [x] Potvrditi jezik teze (SRPSKI ĆIRILICA) i studijski program (Računarstvo i
+      automatika / RT i RK – Automobilski softver) — POTVRĐENO
+- [x] Arhitektura: voice pipeline potvrđen (experimental/voicebot, Asterisk +
+      OpenAI Realtime junior/supervisor)
 - [ ] ls-researcher: proširiti literaturu (voice AI, contact center, multimodal,
       comparative methodology) + kopirati verifikovane unose iz #15
 - [ ] Definisati zajednički analitički okvir za komparaciju (automation rate + ...)
-- [ ] Arhitektura: potvrditi voice pipeline u world repou
-- [ ] ls-paper-writer: pisanje po strukturi teze (bezličan glas — v. novo pravilo)
-- [ ] Dijagrami: arhitektura (imamo PNG iz #15, proširiti za voice), po slučaju
+- [ ] ls-paper-writer: pisanje po strukturi teze na ĆIRILICI (bezličan glas)
+- [ ] Dijagrami: arhitektura (chatbot + voicebot), po slučaju
 - [ ] ls-reviewer: pregled
 - [ ] Zbornik sažetak (#19) — posle master rada
