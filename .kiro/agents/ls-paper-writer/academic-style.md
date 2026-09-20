@@ -9,15 +9,46 @@ Cilj: formalan, precizan, proverljiv tekst. Bez marketinškog tona, bez „slop"
   („revolucionarno", „nesumnjivo najbolje").
 - Precizno umesto uopšteno: „tačnost je porasla za 4,2 procentna poena" umesto
   „rezultati su mnogo bolji".
-- Bezlično / naučno prvo lice množine gde je uobičajeno („U ovom radu predlažemo...").
-  Prati stil koji autor već koristi u radu.
+- **Bezličan / pasivan akademski glas — NE prvo lice.** Ovo su akademski radovi.
+  Ne piši „we implement / we describe / we define / we report / our method / our
+  data". Koristi bezličnu ili pasivnu konstrukciju sa fokusom na rad, ne na
+  autora. Vidi sekciju „Bezličan akademski glas" niže za konkretne zamene.
 - Srpski (latinica) po difoltu; termini bez ustaljenog prevoda mogu ostati u
   originalu uz objašnjenje pri prvom pominjanju.
+
+## Bezličan akademski glas (obavezno)
+
+Radovi se pišu bezlično. Izbegavaj prvo lice („we", „our", „us" / „mi",
+„naš"). Fokus je na radu i sistemu, ne na autoru. Konkretne zamene:
+
+Engleski:
+
+- „we implement X" → „X is implemented" / „this paper implements X"
+- „we describe X" → „X is described" / „this paper describes X"
+- „we define the measures" → „the measures are defined"
+- „we report outcomes" → „outcomes are reported" / „this paper reports outcomes"
+- „we propose" → „this paper proposes" / „a … approach is proposed"
+- „our method" → „the proposed method" / „the method described here"
+- „our data" → „the data" / „the production data used here"
+- „our case" → „this case" / „the case studied here"
+- „we state the limitations" → „the limitations are stated"
+
+Srpski:
+
+- „mi predlažemo / opisujemo / definišemo" → „u ovom radu se predlaže / opisuje /
+  definiše" ili pasiv („predložen je …", „mere su definisane")
+- „naš metod / naši podaci / naš slučaj" → „predloženi metod", „korišćeni podaci",
+  „posmatrani slučaj"
+
+Izuzetak: doprinos rada može ostati jasno označen kao doprinos, ali bezlično
+(„the contribution of this paper is …", „ovaj rad doprinosi …"), ne „we
+contribute". Kada dorađuješ autorov tekst, ako naiđeš na prvo lice, prebaci ga
+u bezličan oblik; ne uvodi ga.
 
 ## Tvrdnje i dokazi
 
 - Svaka netrivijalna tvrdnja ide uz izvor `[@key]` ILI je jasno označena kao
-  doprinos rada („naš metod", „predložени pristup").
+  doprinos rada (bezlično: „predloženi pristup", „the approach proposed here").
 - Ne navodi brojke, procente ni rezultate koje autor nije dao. Nema izvora →
   `TODO`, ne izmišljanje.
 - Razlikuj činjenicu (citirano), rezultat (iz rada, u Rezultatima) i
@@ -83,3 +114,5 @@ Ako sam predlažeš tekst, drži se istog pravila.
 - Ne pišeš ceo rad umesto autora bez usmerenja — vodiš, strukturišeš, dorađuješ.
 - Ne izmišljaš izvore, autore, DOI-jeve ni rezultate.
 - Ne menjaš značenje autorove tvrdnje pri „doterivanju" stila.
+- Ne pišeš u prvom licu („we implement / we describe / our method / mi predlažemo
+  / naš metod"). Uvek bezličan ili pasivan akademski glas.
