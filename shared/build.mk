@@ -15,13 +15,18 @@ BUILDDIR ?= public
 PAPER ?= paper.md
 OUTNAME ?= $(notdir $(CURDIR))
 
+# Optional per-paper overrides: if the paper folder has a paper.mk, include it.
+# It can set CSL, DOCX_TEMPLATE, ODT_TEMPLATE (e.g. a conference style/template).
+-include paper.mk
+
 # Pandoc source format: markdown + LaTeX math + raw tex
 FROM := markdown+tex_math_single_backslash+tex_math_dollars+raw_tex
 
-# Shared resources
-CSL := $(SHARED)/resources/ieee.csl
-DOCX_TEMPLATE := $(SHARED)/resources/template.docx
-ODT_TEMPLATE := $(SHARED)/resources/template.odt
+# Shared resources — overridable per paper (a paper's Makefile can set a
+# different CSL or reference template, e.g. a conference-specific style).
+CSL ?= $(SHARED)/resources/ieee.csl
+DOCX_TEMPLATE ?= $(SHARED)/resources/template.docx
+ODT_TEMPLATE ?= $(SHARED)/resources/template.odt
 
 # Common pandoc flags (crossref for figures/tables/eqs, citeproc for citations)
 PANDOC_COMMON := \
